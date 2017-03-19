@@ -1,0 +1,18 @@
+my_app_user_homepage:
+    path:     /
+    defaults: { _controller: MyAppUserBundle:Default:index }
+showprofile:
+    path:     /profilesh
+    defaults: { _controller: MyAppUserBundle:Profile:show }
+editprofile:
+    path:     /profiledit
+    defaults: { _controller: MyAppUserBundle:Profile:edit }
+espaceclient:
+    path:     /client
+    defaults: { _controller: MyAppUserBundle:Default:client }
+espacgerant:
+    path:     /gerant
+    defaults: { _controller: MyAppUserBundle:Default:gerant }
+home:
+    path:     /home
+    defaults: { _controller: MyAppUserBundle:Default:home }

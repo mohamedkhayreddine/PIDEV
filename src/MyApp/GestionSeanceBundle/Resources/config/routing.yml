@@ -1,0 +1,9 @@
+my_app_gestion_seance_homepage:
+    path:     /Acceuil
+    defaults: { _controller: MyAppGestionSeanceBundle:Seance:Accueil }
+page_ajout:
+    path:     /ajout
+    defaults: { _controller: MyAppGestionSeanceBundle:Seance:ajout }
+page_affichage:
+    path:     /planning
+    defaults: { _controller: MyAppGestionSeanceBundle:Seance:affichage }
