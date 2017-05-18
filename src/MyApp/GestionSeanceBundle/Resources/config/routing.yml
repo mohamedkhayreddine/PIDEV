@@ -1,9 +1,35 @@
-my_app_gestion_seance_homepage:
-    path:     /Acceuil
-    defaults: { _controller: MyAppGestionSeanceBundle:Seance:Accueil }
-page_ajout:
-    path:     /ajout
-    defaults: { _controller: MyAppGestionSeanceBundle:Seance:ajout }
-page_affichage:
-    path:     /planning
-    defaults: { _controller: MyAppGestionSeanceBundle:Seance:affichage }
+my_app_seance_homepage:
+    path:     /
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:index }
+lsitSeance:
+    path:     /listSeance
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:listSeance }
+ajoutSeance:
+    path:     /ajoutSeance
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:AjoutSeance }
+lsitSeance2:
+    path:     /listSeance2
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:findMoniteurDQL }
+modifSeance:
+    path:     /modif/{id}
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:modifierSeance}
+SupprimerSeance:
+    path:     /supp/{id}
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:SupprimerSeance}
+MesSeances:
+    path:     /myplaning
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:Planinig}
+PDF:
+      path:     /PDF/{id}
+      defaults: { _controller:   MyAppGestionSeanceBundle:Default:pdf}
+recherche:
+      path:     /recherche/{motcle}
+      defaults: { _controller:   MyAppGestionSeanceBundle:Default:rechercherAjax }
+      requirements:
+          format: json
+MesSeancesMoniteur:
+    path:     /myplaningmoniteur
+    defaults: { _controller: MyAppGestionSeanceBundle:Default:PlaninigM}
+PDFM:
+      path:     /PDFM/{id}
+      defaults: { _controller:   MyAppGestionSeanceBundle:Default:pdfM}

@@ -1,0 +1,146 @@
+{% extends '@MyAppUser/Default/pages/admin.html.twig' %}
+
+
+
+{% block container %}
+
+
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-dark">
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Titre</th>
+                                        <th>Fichier</th>
+                                        <th>date </th>
+                                        <th>Proposer par</th>
+                                        <th>Détail</th>
+                                        <th>Validiter</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for key,c in cours %}
+
+
+                                            <tr>
+
+                                            <td>{{ c.titre }}</td>
+                                                <td > <a href="#myModaledit{{ key}}" data-toggle="modal" data-target="#myModalshow{{ key}}" class="waves-effect waves-button"> <span class="menu-icon glyphicon glyphicon-book" style="vertical-align:middle;"> </span></a>
+
+                                                    <!-- Modal Afficher -->
+                                                    <div class="modal fade" id="myModalshow{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel"></h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <iframe src="http://localhost/karhabty/web/images/products/{{ c.getImageName() }}" width="540" height="600"></iframe>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </td>
+                                            <td>{{ c.dateDepo | date}}</td>
+                                            <td>{{ c.idMoniteur.nom }}</td>
+
+                                                <td>  <!-- Button Détails -->
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModaldetails{{ key }}">
+                                                        Détails
+                                                    </button>
+
+                                                    <!-- Modal Détails -->
+                                                    <div class="modal fade" id="myModaldetails{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Détails</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+
+                                                                    Titre : {{ c.titre }}<br>
+                                                                    Description : {{ c.description }}<br>
+                                                                    Date déposition : {{ c.dateDepo | date}}<br>
+                                                                    Proosé par : {{ c.idMoniteur.nom }}{{ c.idMoniteur.prenom }}<br>
+                                                                    Statut :
+                                                                    {% if c.validation == 0 %}
+                                                                        <a href="#myModalsupp{{ key }}" data-toggle="modal" data-target="#myModalsupp{{ key}}"> pas encor</a><br>
+                                                                    {% elseif c.validation == 1 %}
+                                                                        valider<br>
+
+                                                                    {% endif %}
+
+
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+
+
+
+                                            {% if c.validation == 0 %}
+                                                <td>
+                                                    <!-- Button Valider -->
+                                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalsupp{{ key }}">
+                                                        Valider
+                                                    </button>
+
+                                                    <!-- Modal Valider -->
+                                                    <div class="modal fade" id="myModalsupp{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Valider</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Voulez-vous vraiment Valider     {{ c.titre }}  ?
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                                    <button type="button" class="btn btn-success" ><a style="color: white" href="{{ path('validerCours',{ 'id' : c.id }) }}">Valider</a></button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            {% elseif c.validation == 1 %}
+                                                <td>valider</td>
+                                            {% endif %}
+
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Row -->
+        </div><!-- Main Wrapper -->
+{% endblock %}

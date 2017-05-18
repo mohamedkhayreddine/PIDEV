@@ -1,0 +1,127 @@
+
+{% extends '@MyAppUser/Default/pages/admin.html.twig' %}
+
+
+{% block title %}
+    Chart Karhabtyy
+{% endblock %}
+
+
+{% block menu %}
+    <ul class="menu accordion-menu">
+
+        <li><a href="{{ path('statAdmin') }}" class="waves-effect waves-button"> <span class="menu-icon glyphicon glyphicon-signal"> </span><p>Stat</p></a></li>
+        <li><a href="{{ path('listerCours') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-book"></span><p>Cours</p></a></li>
+        <li><a href="{{ path('listerCoursProposer') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-book"></span><p>Cours Proposés</p></a></li>
+        <li><a href="{{ path('listerPubliciteAdmin') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Publicités</p></a></li>
+
+
+    </ul>
+
+{% endblock %}
+{% block flob %}
+
+
+    <div id="main-wrapper">
+
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-dark">
+                    <div class="panel-heading">
+
+                        <h3 class="panel-title">Cours par mois </h3>
+
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-dark">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Utilisateur</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris4"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-dark">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Cours Admin/Moniteur</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div id="morris2"></div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- Row -->
+    </div><!-- Main Wrapper -->
+{% endblock %}
+
+{% block script %}
+
+
+    <script>
+        $( document ).ready(function() {
+
+
+            Morris.Bar({
+                element: 'morris2',
+                data: [
+                    {% for i in coursAdmin %}
+                    {month: '{{ i[2] }}', a: {{ i[1] }} ,b:{{ i[0] }} },
+                    {% endfor %}
+
+                ],
+                xkey: 'month',
+                ykeys: ['a','b'],
+                labels: ['a','b'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+                barColors: ['#6ad6c3','#22BAA0'],
+                resize: true ,
+                parseTime: false
+
+            });
+
+            Morris.Line({
+                element: 'morris3',
+                data: [
+                    {% for i in coursParMois %}
+                    {month: '{{ i['day_x'] }}', a: {{ i['cour'] }} },
+                    {% endfor %}
+                ],
+                xkey: 'month',
+                ykeys: ['a'],
+                labels: ['Nombre de cours'],
+                resize: true,
+                lineColors: ['#6ad6c3'],
+                parseTime: false
+            });
+
+
+
+            Morris.Donut({
+                element: 'morris4',
+                data: [
+
+                    {% for i in statUser %}
+                    {label: '{{ i['roles'][0] }}' , value: {{ i[1] }} },
+                    {% endfor %}
+
+
+                ],
+                resize: true,
+                colors: ['#74e4d1', '#44cbb4', '#119d85','#22BAA0']
+            });
+        });
+    </script>
+
+{% endblock %}

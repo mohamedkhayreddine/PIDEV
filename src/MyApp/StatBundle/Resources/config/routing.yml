@@ -1,0 +1,4 @@
+
+statAdmin:
+    path:     /statAdmin
+    defaults: { _controller: MyAppStatBundle:stat:graph}

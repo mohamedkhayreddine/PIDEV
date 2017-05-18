@@ -1,0 +1,230 @@
+
+{% extends "@MyAppUser/Default/pages/gerant.html.twig" %}
+
+{% block title %}
+    <div class="page-title">
+        <h3> Gestion Affectation</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('listeAff') }}">Home</a></li>
+
+
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+
+
+<div id="main-wrapper">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-dark">
+
+                <div class="panel-body">
+
+        <div class="table-responsive">
+            <div id="example3_wrapper" class="dataTables_wrapper">
+                 <div class="dataTables_length" id="example3_length">
+                     <div id="example3_filter" class="dataTables_filter">
+
+
+                           <input type="text" id="myInput" onkeyup="myFunction2()" placeholder="Recherche" >
+
+                            </div>
+                          <table id="myTable" class="display table" style="width: 100%; cellspacing: 0;" >
+
+                                <tr>
+                                    <th class="text-success">Nom</th>
+                                    <th class="text-success">prenom</th>
+                                    <th class="text-success">N° Tel </th>
+                                    <th class="text-success">Email</th>
+                                    <th class="text-success">Affectation</th>
+                                    <th class="text-success">Nom Moniteur </th>
+                                    <th> </th>
+
+                                </tr>
+                               {% for key,i in aff %}
+                                   <tr>
+
+                                        <td> {{ i.idCandidat.nom }}</td>
+                                        <td> {{ i.idCandidat.prenom }}</td>
+                                        <td> {{ i.idCandidat.numtel }}</td>
+                                        <td> {{ i.idCandidat.email }}</td>
+
+                                        {% if i.affecter == 0 %}
+
+                                <td>            <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModalaff{{ key }}">
+                                    Affecter
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModalaff{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <h4 class="modal-title" id="myModalLabel">Affectation</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                             Voulez-vous vraiment Affecter     {{ i.idCandidat.getNom() }}  ?
+                                                {{ render(controller(
+                                                'MyAppAffectationBundle:affectation:ajouterAff', { 'id' : i.id }
+                                                )) }}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                </td>
+                                            <td>-------------</td>
+
+                                           {#<td> <a href="{{ path('ajouterAff',{'id' : i.idCandidat } ) }}" >  Non affecté </a></td>#}
+                                        {% elseif i.affecter == 1 %}
+                                            <td>Affecte</td>
+                                            <td>{{ i.idMoniteur.getNom() }}</td>
+                                        {% endif %}
+
+
+
+                                       <td>
+
+                                       <!-- supprimer  -->
+                                       <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalsupp{{ key }}">
+                                           supprimer
+                                       </button>
+
+                                       <!-- Modal -->
+                                       <div class="modal fade" id="myModalsupp{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                           <div class="modal-dialog" role="document">
+                                               <div class="modal-content">
+                                                   <div class="modal-header">
+                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                       <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                                                   </div>
+                                                   <div class="modal-body">
+                                                       Voulez-vous vraiment supprimer  l'affectation de :   {{ i.idCandidat.getNom() }}  ?
+
+                                                   </div>
+                                                   <div class="modal-footer">
+                                                       <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                       <button type="button" class="btn btn-danger"  ><a style="color: white" href="{{ path('supprimerAffectation',{'id' : i.id } ) }}"> Supprimer</a></button>
+
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+
+
+
+
+
+
+                                       <!-- Modifier -->
+
+
+                                       <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#myModaledit{{ key}}">
+                                           Modifier
+                                       </button>
+
+                                       <!-- Modal -->
+                                       <div class="modal fade" id="myModaledit{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                           <div class="modal-dialog" role="document">
+                                               <div class="modal-content">
+
+
+                                                   <div class="modal-header">
+                                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                       <h4 class="modal-title" id="myModalLabel">Modifier Affecter</h4>
+                                                   </div>
+                                                   <div class="modal-body">
+
+                                                       {{ render(controller(
+                                                       'MyAppAffectationBundle:affectation:modifierAff',
+                                                       { 'id': i.id }
+                                                       )) }}
+
+                                                   </div>
+                                                   <div class="modal-footer">
+                                                       <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+
+                                       </td>
+                                    </tr>
+                                {% endfor %}
+                                 </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+    <script>
+        function myFunction2() {
+            // Declare variables
+            var input, filter, table, tr, td,td2 ,td3,td4,td5, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                td2 = tr[i].getElementsByTagName("td")[1];
+                td3 = tr[i].getElementsByTagName("td")[2];
+                td4 = tr[i].getElementsByTagName("td")[3];
+                td5 = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                    else if (td2) {
+                        if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else if (td3) {
+                            if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else if (td4) {
+                                if (td4.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                }else if (td5) {
+                                    if (td5.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                    } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+            }
+        }
+    </script>
+
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends "@MyAppUser/Default/pages/user.html.twig" %}
+
+{% block links %}
+    <div class="page-title">
+        <h3> Mes Reclamations</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="{{ path('affiche Reclamation') }}">Reclamation</a></li>
+                <li><a href="{{ path('my_app_mail_homepage') }}">Mail</a></li>
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+
+
+  <center>  <h2 style="color: red"><b>Envoyer Reclamation </b></h2></center>
+            <hr>
+
+            {{ form_start(form) }}
+    <br><br>
+    <label for="subject" class="col-sm-2 control-label">Sujet</label>
+    <br><br>
+            <div>
+                {{ form_widget(form.subject) }}
+                {{ form_errors(form.subject) }}
+            </div>
+    <br><br>
+
+
+
+    <br><br>  <label for="subject" class="col-sm-2 control-label">Votre_message</label>
+    <br><br>   <div>
+
+               {{ form_widget(form.message) }}
+
+                {{ form_errors(form.message) }}
+            </div>
+
+
+            <div style="display:none">
+                {{ form_rest(form) }}
+            </div>
+            <hr />
+            <input class="btn btn-primary btn-rounded" type="submit" value="Envoyer">
+
+        {{ form_end(form) }}
+        <div class="panel-footer text-muted">
+            <strong>Note : </strong> <div class="alert alert-info" role="alert">
+          <center> Un Administrateur vous répondra dans les plus brefs délais.</center>
+            </div>
+        </div>
+{% endblock %}
+

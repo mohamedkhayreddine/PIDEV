@@ -1,0 +1,90 @@
+{% extends ':default:layoutUser.html.twig' %}
+{% block Menu %}
+
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('Events') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="{{ path('Events') }}">Mes Evenements</a></li>
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="{{ path('MesSeances') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Emploi</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-comment"></span><p>Reclamation</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="#">Mes Reclamation</a></li>
+                <li><a href="#">Ajouter une reclamation</a></li>
+                <li><a href="#" >Mail</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+        <li  class="droplink "><a href="#" class="waves-effect waves-button" ><span class="menu-icon glyphicon glyphicon-euro"></span><p>Recharge</p><span class="arrow"></span></a>
+
+        </li>
+
+
+
+    </ul>
+
+
+{% endblock %}
+
+
+{% block container %}
+    {% for i in data %}
+
+
+        <div class = "row">
+
+        <div class = "col-sm-6 col-md-3">
+            <div class = "thumbnail">
+
+                <img class="media-object img-rounded" width="200px" height="200px"  src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" />
+            </div>
+
+            <div class = "caption">
+                <p>
+                    Titre : {{ i.title }} <br>
+                    Description : {{ i.description }}  <br>
+                    Date de l'évenement : {{ i.eventDate | date('d-m-y')}} <br>
+
+                </p>
+
+                <p>
+                    <a href="{{ path('Participer', {'id': i.id}) }}" class="btn btn-primary">Participer</a>
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Inviter Des Amis</button>
+
+                     <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                               {{ socialButtons() }}
+                                     </div>
+                             <div class="modal-footer">
+                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

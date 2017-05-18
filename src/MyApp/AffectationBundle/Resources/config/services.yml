@@ -1,0 +1,4 @@
+services:
+#    my_app_affectation.example:
+#        class: MyApp\AffectationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

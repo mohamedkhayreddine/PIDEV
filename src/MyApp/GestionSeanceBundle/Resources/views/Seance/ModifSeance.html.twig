@@ -1,0 +1,52 @@
+{% extends "@MyAppUser/Default/pages/gerant.html.twig" %}
+
+{% block title %}
+    <div class="page-title">
+        <h3> Gestion des Sénaces</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('lsitSeance') }}">Home</a></li>
+                <li><a href="#">Reclamation</a></li>
+
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+    <h3>Modifier La seance </h3>
+
+    {{ form_start(f) }}
+
+    <table align="center">
+
+        <tr>
+            <td>Date Seance : </td><td>{{ form_widget(f.dateSeance,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}</td>
+        </tr>
+
+        <tr>
+            <td>Heure de debut : </td><td>{{ form_widget(f.heureDebut,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}</td>
+        </tr>
+        <tr>
+            <td>Heure de fin : </td><td>{{ form_widget(f.heureFin,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}</td>
+        </tr>
+        <tr>
+            <td>Moniteur : </td><td>{{ form_widget(f.idMoniteur,{'attr':{'class':'form-control' , 'data-live-search':"true"}})   }}</td>
+        </tr>
+        <tr>
+            <td>Candidat : </td><td>{{ form_widget(f.idCandidat,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}</td>
+        </tr>
+
+
+    </table>
+    <center> {{ form_widget(f.Enregistrer) }} </center>
+
+    {{ form_end(f) }}
+{% endblock %}
+
+
+
+
+
+
+

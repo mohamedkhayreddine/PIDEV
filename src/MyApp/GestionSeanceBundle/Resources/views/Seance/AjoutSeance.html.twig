@@ -1,0 +1,86 @@
+{% extends "@MyAppUser/Default/pages/gerant.html.twig" %}
+
+{% block title %}
+    <div class="page-title">
+        <h3> Gestion des Sénaces</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('lsitSeance') }}">Home</a></li>
+                <li><a href="{{ path('ajoutSeance') }}">Ajouter Une Séance</a></li>
+
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+
+    {% if app.session.flashBag.has('notice') %}
+        <div class="alert alert-warning">
+            {% for msg in app.session.flashBag.get('notice') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <br>
+    <center><h3 style="color: red">Ajouter une Sénace</h3></center>
+
+    <br>
+
+  <div class="form-group-lg">
+  {{ form_start(f) }}
+      <div align="center" style="align-self: auto">
+          <div class="form-group-lg">
+              <h4>Date de la séance :</h4>  {{ form_widget(f.dateSeance,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}
+          </div>
+      </div>
+      <br>
+    <div align="center">
+        <div class="form-group-sm">
+           <h4>Heure de début :</h4>  {{ form_widget(f.heureDebut,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}
+        </div>
+    </div>
+      <br>
+    <div align="center">
+        <div class="form-group-lg">
+           <h4>Heure de Fin :</h4>  {{ form_widget(f.heureFin,{'attr':{'class':'form-control' , 'data-live-search':""}}) }}
+        </div>
+    </div>
+      <br>
+    <div align="center">
+        <div class="form-group-lg">
+            <h4>Moniteur :</h4> {{ form_widget(f.idMoniteur,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}
+        </div>
+    </div>
+      <br>
+      <div align="center">
+          <div class="form-group-lg">
+              <h4>Candidat :</h4> {{ form_widget(f.idCandidat,{'attr':{'class':'form-control' , 'data-live-search':"true"}}) }}
+          </div>
+      </div>
+
+
+    <br>
+    <center>{{ form_widget(f.Enregistrer,{'attr':{'class':'btn btn-success btn-rounded' , 'data-live-search':"true"}}) }}</center>
+
+
+
+    {{ form_end(f) }}
+  </div>
+
+
+{% endblock %}
+
+
+
+
+
+
+

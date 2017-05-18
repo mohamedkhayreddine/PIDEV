@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+    <script type="text/javascript" src="jquery.min.1.7.js"></script>
+    <script type="text/javascript" src="turn.min.js"></script>
+
+    <style type="text/css">
+        body{
+            background:#ccc;
+        }
+        #magazine{
+            width:200px;
+            height:452px;
+
+        }
+        #magazine .turn-page{
+            background-color:#ccc;
+            background-size:100% 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div id="magazine">
+    <div>t</div>
+    <div>e</div>
+    <div>s</div>
+    <div>l</div>
+    <div>a</div>
+</div>
+
+
+<script type="text/javascript">
+
+    $(window).ready(function() {
+        $('#magazine').turn({
+            display: 'single',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation:50,
+            when: {
+                turned: function(e, page) {
+                    /*console.log('Current view: ', $(this).turn('view'));*/
+                }
+            }
+        });
+    });
+
+
+    $(window).bind('keydown', function(e){
+
+        if (e.keyCode==37)
+            $('#magazine').turn('previous');
+        else if (e.keyCode==39)
+            $('#magazine').turn('next');
+
+    });
+
+</script>
+
+</body>
+</html>

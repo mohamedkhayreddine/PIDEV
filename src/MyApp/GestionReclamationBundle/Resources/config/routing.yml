@@ -1,0 +1,50 @@
+my_app_gestion_reclamation_homepage:
+    path:     /
+    defaults: { _controller: MyAppGestionReclamationBundle:Default:index }
+ajouter Reclamation:
+     path:     /user/ajoutReclamation
+     defaults: { _controller: MyAppGestionReclamationBundle:Reclamation:ajoutReclamation }
+affiche Reclamation:
+     path:     /user/afficheReclamation
+     defaults: { _controller: MyAppGestionReclamationBundle:Reclamation:list }
+affiche Admin:
+     path:     /admin/afficheRecAdmin
+     defaults: { _controller: MyAppGestionReclamationBundle:Reclamation:listReclamationAdmin }
+afficheRefuser Admin:
+     path:     /admin/afficheRecAdminref
+     defaults: { _controller: MyAppGestionReclamationBundle:Reclamation:listReclamationAdminref }
+afficheTraiter Admin:
+     path:     /admin/afficheRecAdmintrait
+     defaults: { _controller: MyAppGestionReclamationBundle:Reclamation:listReclamationAdmintrait}
+affiche all Admin:
+     path:     /admin/afficheRecAdminall
+     defaults: { _controller: MyAppGestionReclamationBundle:Reclamation:listReclamationAdminAll }
+traiter reclamation:
+     path:     /admin/traiter/{matricule}
+     defaults: { _controller:   MyAppGestionReclamationBundle:Reclamation:traiter }
+refuser reclamation:
+     path:     /admin/refuser/{matricule}
+     defaults: { _controller:  MyAppGestionReclamationBundle:Reclamation:refuser }
+Modifier reclamation:
+     path:     /user/Modifier/{matricule}
+     defaults: { _controller:  MyAppGestionReclamationBundle:Reclamation:modifier }
+RechercheReclamation:
+     path:     /user/rechercher
+     defaults: { _controller:   MyAppReclamationBundle:reclamation:search }
+my_app_mail_homepage:
+      path:     /user/mail
+      defaults: { _controller:   MyAppGestionReclamationBundle:Mail:contact }
+PDF:
+      path:     /PDF/{matricule}
+      defaults: { _controller:   MyAppGestionReclamationBundle:Reclamation:pdf}
+graphePie:
+      path:     /admin/pie
+      defaults: { _controller:   MyAppGestionReclamationBundle:Reclamation:chartPie}
+
+villesaaa:
+    path: /exp/{nom}
+    defaults: { _controller:  MyAppGestionReclamationBundle:Reclamation:rechercheExperience }
+
+rechall:
+    path: /user/reclamationAll
+    defaults: { _controller:  MyAppGestionReclamationBundle:Reclamation:listReclamationCandidat }

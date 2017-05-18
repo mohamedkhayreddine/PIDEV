@@ -1,0 +1,261 @@
+
+
+{% extends '@MyAppUser/Default/pages/user.html.twig' %}
+
+{% block title %}
+    Cours
+{% endblock %}
+
+
+
+
+
+
+{% block style %}
+    <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+    </style>
+
+{% endblock %}
+{% block menu %}
+<ul class="menu accordion-menu">
+
+    <li><a href="{{ path('listerPublicite') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-book"></span><p>Publicité</p></a></li>
+    <li><a href="{{ path('listerCoursCandidat') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-book"></span><p>Cours</p></a></li>
+
+
+</ul>
+
+{% endblock %}
+
+{% block flob %}
+
+
+
+    <main class="page-content content-wrap">
+
+        <div class="page-inner">
+
+
+
+            <div id="main-wrapper">
+
+                        <div class="row">
+
+                            <div class="col-md-16">
+                                <ul class="cd-gallery">
+                                    {% for key,i in cours %}
+                                    {% if i.validation == 1 %}
+
+                                    <li>
+
+                                        <div class="cd-item-info">
+                                            <b><a href="#"> {{ i.titre }} </a></b>
+                                            Nombre de page : <em class="cd-price"> {{ i.nbPage }}</em>
+                                        </div>
+                                        <div class="cd-item-details">
+                                            <a href="#myModal{{ key }}"  class="pull-right details" data-toggle="modal" data-target="#myModal{{ key }}"><i class="fa fa-list-ul"></i>Détails</a>
+
+                                            <a href="#myModaldownload{{ key }}"  class="pull-left add-to-cart" data-toggle="modal" data-target="#myModaldownload{{ key }}"><i class="fa fa-download" aria-hidden="true"></i>Télécharger</a>
+
+                                        </div>
+
+
+                                        <!-- Modal Telecharger -->
+                                        <div class="modal fade" id="myModaldownload{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel">Télécharger</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Voulez-vous vraiment Telecharger   {{ i.titre }}  ?
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <button type="button" class="btn btn-success" ><a style="color: white" href="{{ path('Download',{'id' : i.id } ) }}"> Télécharger</a></button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- Modal -->
+
+                                        <div class="modal fade" id="myModal{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h2 class="modal-title" id="myModalLabel">Détail cour</h2>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <br> <br>
+
+                                                        <ul>
+                                                            <li> <B>Titre</B> : {{ i.titre }}</li>
+                                                            <li> <B>Description</B> : {{ i.description }}</li>
+                                                            <li> <B> Nombre de page</B> : {{ i.nbPage }} </li>
+                                                            <li> <B> Dete Déposition</B> : {{ i.dateDepo |date }} </li>
+                                                            <li> <B> Déposer par </B> : {% if i.idMoniteur != null %}{{ i.idMoniteur.nom }} {{ i.idMoniteur.prenom }}{% else %} Admin{% endif %}</li>
+                                                            <li> <a href="#myModalshow{{ key }}"  data-toggle="modal" data-target="#myModalshow{{ key }}" ><i class="fa fa-download" aria-hidden="true"></i>Télécharger</a></li>
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+                                        <!-- Modal Afficher -->
+                                        <div class="modal fade" id="myModalshow{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        <h4 class="modal-title" id="myModalLabel"></h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <iframe src="http://localhost/karhabty/web/images/products/{{ i.getImageName() }}" width="540" height="600"></iframe>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                        <button type="button" class="btn btn-danger" ><a style="color: white" href="{{ path('Download',{'id' : i.id } ) }}"> Télécharger</a></button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </li>
+
+
+                                    {% endif %}
+                                    {% endfor %}
+
+                                </ul>
+
+
+
+
+
+
+                            </div>
+
+
+                        </div><!-- Row -->
+
+            </div><!-- Main Wrapper -->
+
+
+
+
+            <!-- end Modal-->
+
+            <div id="snackbar" > Félicitation vous avez acheter cette offre :D</div>
+
+            {% block script %}
+                <script>
+                    function myFunction() {
+                        // Get the snackbar DIV
+                        var x = document.getElementById("snackbar")
+
+                        // Add the "show" class to DIV
+                        x.className = "show";
+
+                        // After 3 seconds, remove the show class from DIV
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                    }
+
+                </script>
+
+            {% endblock %}
+
+
+
+
+
+        </div><!-- Page Inner -->
+    </main><!-- Page Content -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

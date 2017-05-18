@@ -1,0 +1,67 @@
+
+{% extends "@MyAppUser/Default/pages/user.html.twig" %}
+{% block container %}
+
+    {{ form_start(f, {'attr': {'class': 'form-control'}}) }}
+
+    <center>
+
+
+
+        <table>
+
+            <tr>
+                <td>Titre :</td>
+                <td>{{ form_widget(f.titre, {'attr': {'class': 'form-control'}}) }}</td>
+
+
+
+            </tr>
+
+
+
+
+            <tr>
+
+                <td>Description:</td>
+                <td>{{ form_widget(f.description, {'attr': {'class': 'form-control'}}) }}</td>
+
+            </tr>
+
+
+
+
+
+            <tr>
+                <td>Prix</td>
+                <td>
+                    {{ form_widget(f.prix, {'attr': {'class': 'form-control'}}) }}
+                </td>
+            </tr>
+            <tr>
+                <td>Date deposition</td>
+
+                <td>  {{ form_widget(f.dateDeposition, {'attr': {'class': 'form-control date-picker'}}) }}</td>
+
+            </tr>
+            <tr>
+                <td>Date annulation</td>
+                <td> {{ form_widget(f.dateAnnulation, {'attr': {'class': 'form-control date-picker'}}) }}</td>
+            </tr>
+
+            <br><br>
+
+
+<tr><td></td>
+<td>            <div class="g-recaptcha" data-sitekey="6LdFShsUAAAAADdAfN4uyCEbgIDdmmNfcsBSyRnK"></div>
+</td>
+</tr>
+
+            <tr> <td> <input class="btn btn-primary btn-rounded" type="submit" value="Enregistrer"></td></tr>
+
+        </table>
+    </center>
+
+    {{ form_end(f) }}
+
+{% endblock %}

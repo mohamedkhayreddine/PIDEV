@@ -1,6 +1,56 @@
-my_app_gestion_event:
-    resource: "@MyAppGestionEventBundle/Resources/config/routing.yml"
+my_app_gestion_offres:
+    resource: "@MyAppGestionOffresBundle/Resources/config/routing.yml"
     prefix:   /
+
+my_app_stat:
+    resource: "@MyAppStatBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_publicite:
+    resource: "@MyAppPubliciteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_cours:
+    resource: "@MyAppCoursBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_gestion_ville:
+    resource: "@MyAppGestionVilleBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_question:
+    resource: "@MyAppQuestionBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_voiture:
+    resource: "@MyAppVoitureBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_apppaiement:
+    resource: "@MyApppaiementBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_affectation:
+    resource: "@MyAppAffectationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_events:
+    resource: "@MyAppEventsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_gestion_reclamation:
+    resource: "@MyAppGestionReclamationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+my_app_gestion_auto_ecoles:
+    resource: "@MyAppGestionAutoEcolesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+my_app_carte:
+    resource: "@MyAppCarteBundle/Resources/config/routing.yml"
+    prefix:   /
+
 
 my_app_gestion_seance:
     resource: "@MyAppGestionSeanceBundle/Resources/config/routing.yml"
@@ -13,5 +63,10 @@ my_app_user:
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+
+

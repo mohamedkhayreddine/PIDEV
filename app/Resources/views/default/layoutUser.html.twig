@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from steelcoders.com/modern/admin1/layout-horizontal-menu-boxed.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Mar 2017 16:53:52 GMT -->
+<head>
+
+    <!-- Title -->
+    <title>Karhabty</title>
+
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta charset="UTF-8">
+    <meta name="description" content="Admin Dashboard Template" />
+    <meta name="keywords" content="admin,dashboard" />
+    <meta name="author" content="Steelcoders" />
+
+    <!-- Styles -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('assets1/plugins/pace-master/themes/blue/pace-theme-flash.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets1/plugins/uniform/css/uniform.default.min.css') }}" rel="stylesheet"/>
+    <link href="{{ asset('assets1/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/fontawesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/line-icons/simple-line-icons.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/offcanvasmenueffects/css/menu_cornerbox.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/waves/waves.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/switchery/switchery.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/3d-bold-navigation/css/style.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/plugins/slidepushmenus/css/component.css') }}" rel="stylesheet" type="text/css"/>
+
+    <!-- Theme Styles -->
+    <link href="{{ asset('assets1/css/modern.min.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/css/themes/green.css') }}" class="theme-color" rel="stylesheet" type="text/css"/>
+    <link href="{{ asset('assets1/css/custom.css') }}" rel="stylesheet" type="text/css"/>
+
+    <script src="{{ asset('assets1/plugins/3d-bold-navigation/js/modernizr.js') }}"></script>
+    <script src="{{ asset('assets1/plugins/offcanvasmenueffects/js/snap.svg-min.js') }}"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+    <![endif]-->
+
+</head>
+<body class="page-header-fixed page-horizontal-bar">
+<div class="overlay"></div>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s1">
+    <h3><span class="pull-left">Chat</span><a href="javascript:void(0);" class="pull-right" id="closeRight"><i class="fa fa-times"></i></a></h3>
+
+</nav>
+<nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-right" id="cbp-spmenu-s2">
+
+    <div class="chat-write">
+        <form class="form-horizontal" action="javascript:void(0);">
+            <input type="text" class="form-control" placeholder="Say something">
+        </form>
+    </div>
+</nav>
+<div class="menu-wrap">
+    <nav class="profile-menu">
+        <div class="profile"><img src="{{ asset('assets1/images/profile-menu-image.png') }}" width="60" alt="David Green"/><span>David Green</span></div>
+        <div class="profile-menu-list">
+            <a href="#"><i class="fa fa-star"></i><span>Favorites</span></a>
+            <a href="#"><i class="fa fa-bell"></i><span>Alerts</span></a>
+            <a href="#"><i class="fa fa-envelope"></i><span>Messages</span></a>
+            <a href="#"><i class="fa fa-comment"></i><span>Comments</span></a>
+        </div>
+    </nav>
+    <button class="close-button" id="close-button">Close Menu</button>
+</div>
+<!-- Search Form -->
+<main class="page-content content-wrap container">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="sidebar-pusher">
+                <a href="javascript:void(0);" class="waves-effect waves-button waves-classic push-sidebar">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+            <div class="logo-box">
+                <a href="index-2.html" class="logo-text"><span>Karhabty</span></a>
+            </div><!-- Logo Box -->
+
+            <div class="topmenu-outer">
+                <div class="topmenu-outer">
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav navbar-left">
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect waves-button waves-classic sidebar-toggle"><i class="fa fa-bars"></i></a>
+                            </li>
+                            <li>
+                                <a href="#cd-nav" class="waves-effect waves-button waves-classic cd-nav-trigger"><i class="fa fa-diamond"></i></a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect waves-button waves-classic toggle-fullscreen"><i class="fa fa-expand"></i></a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                                    <i class="fa fa-cogs"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-md dropdown-list theme-settings" role="menu">
+                                    <li class="li-group">
+                                        <ul class="list-unstyled">
+                                            <li class="no-link" role="presentation">
+                                                Fixed Header
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span class="checked"><input type="checkbox" class="js-switch pull-right fixed-header-check" checked="" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="background-color: rgb(35, 183, 229); border-color: rgb(35, 183, 229); box-shadow: rgb(35, 183, 229) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 15px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="li-group">
+                                        <ul class="list-unstyled">
+                                            <li class="no-link" role="presentation">
+                                                Fixed Sidebar
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span><input type="checkbox" class="js-switch pull-right fixed-sidebar-check" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                            <li class="no-link" role="presentation">
+                                                Horizontal bar
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span class="checked"><input type="checkbox" class="js-switch pull-right horizontal-bar-check" checked="" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="background-color: rgb(35, 183, 229); border-color: rgb(35, 183, 229); box-shadow: rgb(35, 183, 229) 0px 0px 0px 16px inset; transition: border 0.4s, box-shadow 0.4s, background-color 1.2s;"><small style="left: 15px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                            <li class="no-link" role="presentation">
+                                                Toggle Sidebar
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span><input type="checkbox" class="js-switch pull-right toggle-sidebar-check" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                            <li class="no-link" role="presentation">
+                                                Compact Menu
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span><input type="checkbox" class="js-switch pull-right compact-menu-check" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                            <li class="no-link" role="presentation">
+                                                Hover Menu
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span><input type="checkbox" class="js-switch pull-right hover-menu-check" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="li-group">
+                                        <ul class="list-unstyled">
+                                            <li class="no-link" role="presentation">
+                                                Boxed Layout
+                                                <div class="ios-switch pull-right switch-md">
+                                                    <div class="checker" style="display: none;"><span><input type="checkbox" class="js-switch pull-right boxed-layout-check" data-switchery="true" style="display: none;"></span></div><span class="switchery" style="box-shadow: rgb(223, 223, 223) 0px 0px 0px 0px inset; border-color: rgb(223, 223, 223); background-color: rgb(255, 255, 255); transition: border 0.4s, box-shadow 0.4s;"><small style="left: 0px; background-color: rgb(255, 255, 255); transition: left 0.2s;"></small></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="li-group">
+                                        <ul class="list-unstyled">
+                                            <li class="no-link" role="presentation">
+                                                Choose Theme Color
+                                                <div class="color-switcher">
+                                                    <a class="colorbox color-blue" href="layout-horizontal-menuca00.html?theme=blue" title="Blue Theme" data-css="blue"></a>
+                                                    <a class="colorbox color-green" href="layout-horizontal-menuaf91.html?theme=green" title="Green Theme" data-css="green"></a>
+                                                    <a class="colorbox color-red" href="layout-horizontal-menu0e99.html?theme=red" title="Red Theme" data-css="red"></a>
+                                                    <a class="colorbox color-white" href="layout-horizontal-menu13d4.html?theme=white" title="White Theme" data-css="white"></a>
+                                                    <a class="colorbox color-purple" href="layout-horizontal-menu938c.html?theme=purple" title="purple Theme" data-css="purple"></a>
+                                                    <a class="colorbox color-dark" href="layout-horizontal-menu4965.html?theme=dark" title="Dark Theme" data-css="dark"></a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="no-link"><button class="btn btn-default reset-options">Reset Options</button></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>
+                                <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i class="fa fa-search"></i></a>
+                            </li>
+
+
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle waves-effect waves-button waves-classic" data-toggle="dropdown">
+                                    <span class="user-name">{{ app.user }}<i class="fa fa-angle-down"></i></span>
+                                    <img class="img-circle avatar" src="{{ asset('assets1/images/avatar1.png') }}" width="40" height="40" alt="">
+                                </a>
+                                <ul class="dropdown-menu dropdown-list" role="menu">
+                                    <li role="presentation"><a href="profile.html"><i class="fa fa-user"></i>Profile</a></li>
+                                    <li role="presentation"><a href="calendar.html"><i class="fa fa-calendar"></i>Calendar</a></li>
+                                    <li role="presentation"><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox<span class="badge badge-success pull-right">4</span></a></li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation"><a href="lock-screen.html"><i class="fa fa-lock"></i>Lock screen</a></li>
+                                    <li role="presentation"><a href="{{ path('fos_user_security_login') }}"><i class="fa fa-sign-out m-r-xs"></i>Log out</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="{{ path('fos_user_security_logout') }}" class="log-out waves-effect waves-button waves-classic">
+                                    <span><i class="fa fa-sign-out m-r-xs"></i>Log out</span>
+                                </a>
+                            </li> </ul>
+                        <!-- Nav -->
+                    </div><!-- Top Menu -->
+                </div>
+            </div><!-- Top Menu -->
+        </div>
+    </div>
+    </div><!-- Navbar -->
+    <div class="horizontal-bar sidebar">
+        <div class="page-sidebar-inner slimscroll">
+            <div class="sidebar-header">
+                <div class="sidebar-profile">
+                    <a href="javascript:void(0);" id="profile-menu-link">
+                        <div class="sidebar-profile-image">
+                            <img src="{{ asset('assets1/images/profile-menu-image.png') }}" class="img-circle img-responsive" alt="">
+                        </div>
+                        <div class="sidebar-profile-details">
+                            <span>{{ app.user }}</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% block Menu %}
+
+            {% endblock %}
+        </div><!-- Page Sidebar Inner -->
+    </div><!-- Page Sidebar -->
+    <div class="page-inner">
+        {% block title %}
+
+        {% endblock %}
+        {% block links %}
+
+        {% endblock %}
+        <div>
+            {% block container %}
+
+            {% endblock %}
+
+        </div>
+        <div id="main-wrapper">
+            <div class="row">
+            </div><!-- Row -->
+        </div><!-- Main Wrapper -->
+        <div class="page-footer">
+            <p class="no-s">2017 &copy; Karhabty.</p>
+        </div>
+    </div><!-- Page Inner -->
+</main><!-- Page Content -->
+
+<div class="cd-overlay"></div>
+
+
+<!-- Javascripts -->
+<script src="{{ asset('assets1/plugins/jquery/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/pace-master/pace.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/jquery-blockui/jquery.blockui.js') }}"></script>
+<script src="{{ asset('assets1/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/switchery/switchery.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/uniform/jquery.uniform.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/offcanvasmenueffects/js/classie.js') }}"></script>
+<script src="{{ asset('assets1/plugins/offcanvasmenueffects/js/main.js') }}"></script>
+<script src="{{ asset('assets1/plugins/waves/waves.min.js') }}"></script>
+<script src="{{ asset('assets1/plugins/3d-bold-navigation/js/main.js') }}"></script>
+<script src="{{ asset('assets1/js/modern.min.js') }}"></script>
+
+<script src="{{ asset('assets/pages/scripts/components-date-time-pickers.min.js')}}" type="text/javascript"></script>
+<script src="{{ asset('assets/pages/scripts/form-samples.min.js') }}" type="text/javascript"></script>
+<link href="{{ asset('flip3/src/jquery.booklet.latest.css') }}" type="text/css" rel="stylesheet" media="screen, projection, tv" />
+
+
+
+</body>
+
+<!-- Mirrored from steelcoders.com/modern/admin1/layout-horizontal-menu-boxed.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Mar 2017 16:53:54 GMT -->
+</html>

@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@MyAppCoursBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -63,11 +64,13 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: '%mailer_transport%'
-    host: '%mailer_host%'
-    username: '%mailer_user%'
-    password: '%mailer_password%'
-    spool: { type: memory }
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    encryption: ssl
+    password:  "%mailer_password%"
+    encryption: ssl
+    spool:     { type: memory }
 # /app/config.yml
 fos_user:
     from_email:
@@ -76,3 +79,47 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: MyApp\UserBundle\Entity\User
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:       "\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" # "C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:    []
+vich_uploader:
+    db_driver: orm
+
+    mappings:
+        product_image:
+            uri_prefix:         /images/products
+            upload_destination: '%kernel.root_dir%/../web/images/products'
+        question_image:
+            uri_prefix:         /images/questions
+            upload_destination: '%kernel.root_dir%/../web/images/products'
+nomaya_social:
+    buttons:
+        facebook:
+            url:            "https://web.facebook.com/team7sec"
+            locale:         "fr_FR"
+            send:           false
+            width:          300
+            showFaces:      false
+            layout:         "button_count"
+        twitter:
+            url:            null
+            locale:         "fr"
+            message:        "Je veux partager"
+            text:           "Tweet"
+            via:            "Esprit Test"
+            tag:            "Esprit"
+        googleplus:
+            url:            null
+            locale:          "fr"
+            size:           "medium"
+            annotation:     "bubble"
+            width:          300
+        linkedin:
+            url:            null
+            locale:          "fr"
+            counter:        "right"
+        pinterest:
+            url:            null
+    theme:                 'default'

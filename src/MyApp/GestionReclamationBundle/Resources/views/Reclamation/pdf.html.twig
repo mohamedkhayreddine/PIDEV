@@ -1,0 +1,31 @@
+
+<center><h3  style="color: red"> Reclamation</h3></center><br>
+<h4>Information d' admin</h4>
+NOM :
+ {{ demandes.idcandidat.getNom()}}
+<br>
+PRENOM :
+{{ demandes.idcandidat.getPrenom() }}
+<br>
+ADRESSE Mail :
+{{ demandes.idcandidat.getEmail() }}
+<br><br><br><br><br>
+
+
+           <ul>
+               <li>Matricule :{{ demandes.matricule}}</li>
+                <li>Titre de la Reclamation : {{ demandes.titrerec }}</li>
+            <li>Date de la reclamation :{{ demandes.dateReclamation|date('d-m-Y') }}</li>
+            <li>Titre de l'offre :{{ demandes.idoffre.getTitre()}}</li>
+            <li>Username du candidat : {{ demandes.idcandidat() }}</li>
+
+            </ul>
+
+
+
+
+
+
+
+
+

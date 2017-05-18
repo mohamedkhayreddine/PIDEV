@@ -1,0 +1,88 @@
+{% extends ":default:layoutAdmin.html.twig" %}
+
+{% block containter %}
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="{{ asset('ajax/libs/jquery/3.1.1/jquery.min.js') }}"></script>
+    <script src="{{ asset('plugins/boot2/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('') }}"></script>
+    <div class="table-responsive">
+        {{ form_start(r) }}
+        {{ form_widget(r.contenu) }}
+        {{ form_end(r) }}
+        <table><tr><td align="center">
+
+                    <table class="table table-bordered" id="t01">
+                        <caption align="center"><center><h1>Question</h1></center></caption>
+
+                        <thead>
+                        <tr>
+
+                            <th width="300px">Contenu</th>
+                            <th >Type Question</th>
+                            <th>Reponse Correct </th>
+                            <th colspan="3">reponser erronée</th>
+                            <th>Image</th>
+                            <th>modifier</th>
+                            <th>Supprimer</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for c in l %}
+
+                            <tr>
+                                <td align="center">{{ c.contenu }}</td>
+                                <td align="center">{{ c.typequest.typequest }}</td>
+                                <td align="center">{{ c.reponsecorrect }}</td>
+                                <td align="center">{{ c.choix1 }}</td>
+                                <td align="center">{{ c.choix2 }}</td>
+                                <td align="center">{{ c.choix3 }}</td>
+                                <td><img src="{{app.request.basepath}}/images/Questionimages/{{  c.imageName }}" width="150px" height="150px" alt="monimg" /></td>
+                                <td><a  > <button data-toggle="modal" data-target="#myModal{{ loop.index }}"></button><img src="{{ asset('images/icons/edit_256.png') }}" width="20px" height="20px"></a></td>
+                                <td><a href="{{ path('supprimercour', { 'id':c.id }) }}" onclick="return confirm('Voulez vous vraiment supprimer cet élément?')" >
+                                        <img src="{{ asset('images/icons/delete_128.png') }}" width="20px" height="20px"></a></td>
+
+                            </tr>
+
+
+                            <div class="container{{ loop.index }}">
+                                <!-- Trigger the modal with a button -->
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="myModal{{ loop.index }}" role="dialog">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Modal Header</h4>
+                                            </div>
+                                                Contenu:
+                                                <input type="text" name="contenu" value="{{ c.contenu }}"><br>
+                                                ReponseCorrect:
+                                                <input type="text" name="reponsecorrect" value="{{ c.reponsecorrect }}"><br>
+                                                Choix1:
+                                                <input type="text" name="choix1" value="{{ c.choix1 }}"><br>
+                                                Choix2:
+                                                <input type="text" name="choix2" value="{{ c.choix2 }}"><br>
+                                                Choix3:
+                                                <input type="text" name="choix3" value="{{ c.choix3 }}"><br>
+                                                <a href=""></a>
+                                            <br>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+{% endblock %}

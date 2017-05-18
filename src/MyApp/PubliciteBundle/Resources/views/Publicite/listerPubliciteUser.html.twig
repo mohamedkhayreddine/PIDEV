@@ -1,0 +1,302 @@
+
+{% extends '@MyAppUser/layout/layoutBack.html.twig' %}
+
+
+{% block style %}
+    <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+    </style>
+
+
+{% endblock %}
+
+
+{% block pageTitle %} Liste  de mes publicité {% endblock %}
+
+{% block menu %}
+    <ul class="menu accordion-menu">
+
+
+
+        <li><a href="{{ path('listerPublicite') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-book"></span><p>Publicité</p></a></li>
+        <li><a href="{{ path('listerCoursCandidat') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-book"></span><p>Cours</p></a></li>
+
+
+    </ul>
+
+{% endblock %}
+
+
+
+
+{% block flob %}
+
+
+    <body onload="myFunction()">
+
+
+    <div id="main-wrapper">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="panel panel-dark">
+
+                    <div class="panel-body">
+                        <button type="button"  name="ajout" class="btn btn-success m-b-sm" data-toggle="modal" data-target="#myModal">Ajouter</button>
+
+                        <!--- Modal d'ajout -->
+                        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h2 class="modal-title , text-success" id="myModalLabel" style="align-content: space-around">Ajouter une publicité</h2>
+                                    </div>
+                                    <div class="modal-body">  <br> <br>
+                                        {{ form(form) }}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <!-- Affichage des cour ds un tableau  -->
+
+
+                        <div class="count">
+                            <B>Nombre d'élements dans le tableau = </B>    {{ publicites.getTotalItemCount }}
+                        </div>
+
+
+                        <div class="table-responsive">
+                            <div id="example3_wrapper" class="dataTables_wrapper">
+                                <div class="dataTables_length" id="example3_length">
+                                    <div id="example3_filter" class="dataTables_filter">
+                                        <form method="post">
+                                            <input type="text" id="myInput" onkeyup="myFunction2()" placeholder="Recherche ..." name="rech"  >
+                                        </form>
+                                    </div> <br> <br>
+
+                                    <table class="table table-bordered" id="myTable" style="width: 100%; cellspacing: 0;" >
+
+                                        <tr>
+                                            <th class="text-success" >   {{ knp_pagination_sortable(publicites, 'titre', 'a.titre') }} </th>
+                                            <th class="text-success">description</th>
+                                            <th class="text-success">date deposition</th>
+                                            <th class="text-success">statut</th>
+                                            <th class="text-success">Affiche</th>
+                                            <th class="text-success">Supprimer</th>
+                                            <th class="text-success">Modifier</th>
+
+                                        </tr>
+
+                                        {% for key,i in publicites %}
+
+                                            <tr>
+                                                <td> {{ i.titre }}</td>
+                                                <td> {{ i.description }}</td>
+                                                <td>{{ i.dateDepo | date }}</td>
+
+                                                {% if i.validation == 0 %}
+                                                    <td> Non valide</td>
+                                                {% elseif i.validation == 1 %}
+                                                   <td>valider
+                                                       Date début : {{ i.datePub | date}}
+                                                       Date annulation : {{ i.dateAnnulation | date}}</td>
+                                                {% elseif i.validation == 2 %}
+                                                    <td>Dépasser</td>
+                                                {% endif %}
+
+
+
+                                                <td> <img src="{{app.request.basepath }}/images/products/{{  i.getImageName() }}" width="150px" /> </td>
+                                                <td>
+                                                    <!-- Button Supprimer -->
+                                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModalsupp{{ key }}">
+                                                        supprimer
+                                                    </button>
+
+                                                    <!-- Modal Supprimer -->
+                                                    <div class="modal fade" id="myModalsupp{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Voulez-vous vraiment supprimer     {{ i.titre }}  ?
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                                    <button type="button" class="btn btn-danger" ><a style="color: white" href="{{ path('supprimerPublicite',{'id' : i.id } ) }}"> supprimer</a></button>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+
+                                                <td>
+
+                                                    <!-- Button Modifier -->
+                                                    <button type="button" class="btn btn-warning " data-toggle="modal" data-target="#myModaledit{{ key}}">
+                                                        Modifier
+                                                    </button>
+
+                                                    <!-- Modal Modifier -->
+                                                    <div class="modal fade" id="myModaledit{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+
+
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myModalLabel">Modifier Publicite</h4>
+                                                                </div>
+                                                                <div class="modal-body">
+
+                                                                    {{ render(controller(
+                                                                    'MyAppPubliciteBundle:Default:modiferPublicite',
+                                                                    { 'id': i.id }
+                                                                    )) }}
+
+                                                                </div>
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+
+                                    <div class="navigation">
+                                        {{ knp_pagination_render(publicites) }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    </body>
+
+
+
+
+
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        function myFunction2() {
+            // Declare variables
+            var input, filter, table, tr, td,td2 ,td3,td4,td5, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                td2 = tr[i].getElementsByTagName("td")[1];
+                td3 = tr[i].getElementsByTagName("td")[2];
+                td4 = tr[i].getElementsByTagName("td")[3];
+                td5 = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    }
+                    else if (td2) {
+                        if (td2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else if (td3) {
+                            if (td3.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else if (td4) {
+                                if (td4.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                    tr[i].style.display = "";
+                                }else if (td5) {
+                                    if (td5.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                        tr[i].style.display = "";
+                                    } else {
+                                        tr[i].style.display = "none";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+
+
+
+            }
+        }
+    </script>
+
+
+
+
+
+
+{% endblock %}

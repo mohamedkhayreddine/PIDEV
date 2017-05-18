@@ -1,0 +1,54 @@
+{% extends ":default:layoutAdmin.html.twig" %}
+
+{% block menu %}
+    <ul class="menu accordion-menu">
+        <li class="droplink active open"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-comment"></span><p>Reclamation</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="{{ path('affiche all Admin') }}">les Reclamations</a></li>
+                <li class="active"><a href="{{ path('affiche Admin') }}">Reclamations en cours</a></li>
+                <li><a href="{{ path('afficheTraiter Admin') }}">Reclamations Traiter</a></li>
+                <li><a href="{{ path('afficheRefuser Admin') }}">Reclamations Refuser</a></li>
+
+            </ul>
+        </li>
+        <li  class="droplink "><a href="#" class="waves-effect waves-button" ><span class="menu-icon glyphicon glyphicon-euro"></span><p>Recharge</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="{{ path('ajouter carte') }}">Ajouter carte</a></li>
+                <li class="active"><a href="{{ path('affiche carte') }}">liste des carte</a></li>
+
+            </ul>
+        </li>
+        <li  class="droplink "><a href="#" class="waves-effect waves-button" ><span class="menu-icon glyphicon-book"></span><p>Questions</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="{{ path('affichageQuestion') }}">Liste Des Question</a></li>
+
+            </ul>
+        </li>
+        <li  class="droplink "><a href="#" class="waves-effect waves-button" ><span class="menu-icon glyphicon-book"></span><p>Cours</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="{{ path('listerCours') }}">Liste Des Cours</a></li>
+                <li><a href="{{ path('listerCoursProposer') }}">Cours Proposés</a></li>
+
+            </ul>
+        </li>
+        <li  class="droplink "><a href="#" class="waves-effect waves-button" ><span class="menu-icon glyphicon-book"></span><p>Publicité</p><span class="arrow"></span></a>
+        <li><a href="{{ path('listerPubliciteAdmin') }}">Liste Des Cours</a></li>
+        </li>
+
+
+
+
+
+
+
+
+
+
+
+    </ul>
+{% endblock %}
+
+{% block container %}
+    <h1>Espace Administration</h1>
+
+{% endblock %}

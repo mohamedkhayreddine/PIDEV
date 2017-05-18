@@ -1,0 +1,150 @@
+{% extends '@MyAppUser/Default/pages/admin.html.twig' %}
+
+{% block pageTitle %}Table des publicités Proposer{% endblock %}
+
+{% block container %}
+
+        <div id="main-wrapper">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-dark">
+
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+
+                                        <th>Titre</th>
+                                        <th>Date Deposition </th>
+                                        <th>Proposer par</th>
+                                        <th>Affiche </th>
+                                        <th>Validiter</th>
+                                        <th>Details</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for key,p in publicites %}
+
+
+                                        <tr>
+
+                                            <td>{{ p.titre }}</td>
+                                            <td>{{ p.dateDepo | date}}</td>
+                                            <td>{{ p.idowner.nom }}</td>
+
+                                            <td > <a href="#myModaledit{{ key}}" data-toggle="modal" data-target="#myModalshow{{ key}}" class="waves-effect waves-button"> <span class="menu-icon glyphicon glyphicon-book" style="vertical-align:middle;"> </span></a>
+
+                                                <!-- Modal Afficher -->
+                                                <div class="modal fade" id="myModalshow{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                <h4 class="modal-title" id="myModalLabel"></h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <iframe src="http://localhost/karhabty/web/images/products/{{ p.getImageName() }}" width="300" height="340"></iframe>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </td>
+
+                                            {% if p.validation == 0 %}
+                                                <td><a href="#myModaledit{{ key }}" data-toggle="modal" data-target="#myModaledit{{ key}}"><span class="glyphicon glyphicon-ok" style="color:#00cccc"></span></a> </td>
+                                            {% elseif p.validation == 1 %}
+                                                <td>valider</td>
+                                            {% elseif p.validation == 2 %}
+                                                <td>Dépasser</td>
+                                            {% endif %}
+
+                                            <!-- Modal Modifier -->
+                                            <div class="modal fade" id="myModaledit{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+
+
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Modifier Publicite</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            {{ render(controller(
+                                                            'MyAppPubliciteBundle:PubliciteAdmin:validerPublicite',
+                                                            { 'id': p.id }
+                                                            )) }}
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                          <td>  <!-- Button Détails -->
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModaldetails{{ key }}">
+                                                Détails
+                                            </button>
+
+                                            <!-- Modal Détails -->
+                                            <div class="modal fade" id="myModaldetails{{ key }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            <h4 class="modal-title" id="myModalLabel">Détails</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            Titre : {{ p.titre }}<br>
+                                                            Description : {{ p.description }}<br>
+                                                            Date déposition : {{ p.dateDepo | date}}<br>
+                                                            Proosé par : {{ p.idowner.nom }}<br>
+                                                            Statut :
+                                                            {% if p.validation == 0 %}
+                                                                <a href="#myModaledit{{ key }}" data-toggle="modal" data-target="#myModaledit{{ key}}"> pas encor</a><br>
+                                                            {% elseif p.validation == 1 %}
+                                                                valider<br>
+                                                                Date début : {{ p.datePub | date}}
+                                                                Date annulation : {{ p.dateAnnulation | date}}
+                                                            {% elseif p.validation == 2 %}
+                                                                Dépasser<br>
+                                                                {% endif %}
+
+
+
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            </td>
+
+
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="navigation">
+                                    {{ knp_pagination_render(publicites) }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Row -->
+        </div><!-- Main Wrapper -->
+{% endblock %}

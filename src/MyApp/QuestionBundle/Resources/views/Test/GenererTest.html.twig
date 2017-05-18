@@ -1,0 +1,34 @@
+{% extends '@MyAppUser/Default/pages/user.html.twig' %}
+{% block container %}
+
+
+    <table><tr><td align="center">
+                <table class="table table-bordered" id="t02">
+                    <caption align="center"><center><h1>Génerer Test</h1></center></caption>
+
+                    <thead>
+                    <tr>
+
+                        <th width="300px">Type de Question</th>
+                        <th>Nombre de question</th>
+                        <th >Génerer</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i in l %}
+                            <tr>
+                                <td>{{ i.typequest }}</td>
+                                <td>10 Questions</td>
+                                <td><a href="{{ path('tester', { 'type':i.id }) }}"><button class="btn btn-success m-b-sm">Générer </button></a></td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+
+{% endblock %}

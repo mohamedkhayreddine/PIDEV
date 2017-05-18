@@ -1,0 +1,44 @@
+
+listerCours:
+    path:     /listerCours
+    defaults: { _controller: MyAppCoursBundle:Default:listerCours }
+
+modifierCour:
+    path:     /modifierCour/{id}
+    defaults: { _controller: MyAppCoursBundle:Default:modiferCour}
+
+modifierCourM:
+    path:     /modifierCourM/{id}
+    defaults: { _controller: MyAppCoursBundle:CoursMoniteur:modiferCour}
+
+supprimerCour:
+    path:     /supprimerCour/{id}
+    defaults: { _controller: MyAppCoursBundle:Default:supprimerCour}
+
+supprimerCourM:
+    path:     /supprimerCourM/{id}
+    defaults: { _controller: MyAppCoursBundle:CoursMoniteur:supprimerCour}
+
+listerCoursProposer:
+    path:     /listerCoursPropose
+    defaults: { _controller: MyAppCoursBundle:coursProposer:listerCoursProposer }
+
+validerCours:
+    path:     /validerCours/{id}
+    defaults: { _controller: MyAppCoursBundle:coursProposer:ValiderCours}
+
+mesCoursMoniteur:
+    path:     /mesCoursMoniteur
+    defaults: { _controller: MyAppCoursBundle:CoursMoniteur:listerCours}
+
+listerCoursCandidat:
+    path:     /listerCoursCandidat
+    defaults: { _controller: MyAppCoursBundle:Default:listerCoursCandidat}
+
+Download:
+    path:     /Download/{id}
+    defaults: { _controller: MyAppCoursBundle:Default:download}
+
+recherche:
+    path:     /recherche/{motCle}
+    defaults: { _controller: MyAppCoursBundle:Default:rechercheCours}

@@ -1,0 +1,81 @@
+
+<center><h3> Mon Emploi </h3></center><br>
+<h4>Informations Personnelles</h4>
+NOM :
+{{ app.user.getNom()}}
+<br>
+PRENOM :
+{{ app.user.getPrenom()}}
+<br>
+ADRESSE Mail :
+{{ app.user.getEmail() }}
+<br><br><br><br><br>
+
+
+<html>
+
+<head>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even){background-color: #ffffff}
+
+        th {
+            background-color: #5d5d5d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="panel-body">
+
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date Seance </th>
+            <th> Heure Debut</th>
+            <th> Heure Fin</th>
+            <th>Moniteur</th>
+            <th>Candidat</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in data %}
+            <tr>
+                <td> {{ i.dateSeance|date('d-m-y') }}</td>
+                <td> {{ i.heureDebut|date('h:m') }}</td>
+                <td> {{ i.heureFin|date('h:m') }}</td>
+                <td> {{ i.idMoniteur.nom }}</td>
+                <td> {{ i.idCandidat.nom }} </td>
+
+
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+

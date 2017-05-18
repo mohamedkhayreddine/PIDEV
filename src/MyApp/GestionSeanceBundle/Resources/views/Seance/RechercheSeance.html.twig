@@ -1,0 +1,81 @@
+{% extends ":default:layoutUser.html.twig" %}
+{% block Menu %}
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('my_app_event_homepage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Seances</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutSeance') }}">Nouvelle Seance</a></li>
+                <li><a href="{{ path('lsitSeance') }}">Liste Des Seances</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-comment"></span><p>Reclamation</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="#">Mes Reclamation</a></li>
+                <li><a href="#">Ajouter une reclamation</a></li>
+                <li><a href="#" >Mail</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+
+
+
+
+    </ul>
+
+{% endblock %}
+
+{% block container %}
+
+    <form id="form_recherche" action="{{ path('recherche') }}" method="POST">
+        <center>
+            <input onkeyup="hav();" placeholder="Nom du Offre" style="width: 400px; margin-bottom: 20px;text-align: center; font-size: 16px;" type="text" id="produitsrecherche_motcle" name="produitsrecherche[motcle]"/>
+            <div  style="margin-left:400px;margin-right:550px;" class="loading2"></div>
+        </center>
+
+        <div id="resultats_recherche">
+            {% include 'MyAppSeanceBundle:Seance:listSeance.html.twig' with {'data' : data }  %}
+        </div>
+    </form>
+    <script>
+
+        function hav(){
+            $(".loading2").hide();
+            console.log("ahla w sahla");
+            $(".loading2").show();
+            var motcle = $("#produitsrecherche_motcle").val();
+
+            var DATA = 'motcle=' + motcle;
+            $.ajax({
+                type: "POST",
+                url: "{{ path('recherche')}}",
+                data: DATA,
+                cache: false,
+                success: function (data) {
+                    $('#resultats_recherche').html(data);
+                    $(".loading2").hide();
+                }
+            });
+        }
+
+
+    </script>
+
+{% endblock %}

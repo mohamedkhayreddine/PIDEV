@@ -1,0 +1,27 @@
+my_app_event_homepage:
+    path:     /homeEvent
+    defaults: { _controller: MyAppEventsBundle:Default:listEvents }
+ajoutEvent:
+    path:     /ajoutEvent
+    defaults: { _controller: MyAppEventsBundle:Default:AjoutEvent}
+daeletEvent:
+    path:     /delete/{id}
+    defaults: { _controller: MyAppEventsBundle:Default:SupprimerEvent}
+updateEvent:
+    path:     /update/{id}
+    defaults: { _controller: MyAppEventsBundle:Default:UpdateEvent}
+Events:
+    path:     /events
+    defaults: { _controller: MyAppEventsBundle:Default:showPublicEvents}
+Participer:
+    path:     /participer/{id}
+    defaults: { _controller: MyAppEventsBundle:Default:participer}
+ListParticipants:
+    path:     /Participants/{id}
+    defaults: { _controller: MyAppEventsBundle:Default:showParticipation}
+AcceptParticipant:
+    path:     /Accept/{id}
+    defaults: { _controller: MyAppEventsBundle:Default:Accept}
+DeclineParticipant:
+    path:     /Decline/{id}
+    defaults: { _controller: MyAppEventsBundle:Default:Decline}

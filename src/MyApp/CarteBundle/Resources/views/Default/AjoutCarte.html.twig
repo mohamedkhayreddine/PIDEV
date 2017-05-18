@@ -1,0 +1,33 @@
+{% extends ":default:layoutAdmin.html.twig" %}
+{% block container %}
+
+
+    <center>
+
+        <center>   <h2 style="color: #FFFFFF"><b>Ajouter une carte de recharge </b></h2></center>
+        <br><br><br>
+
+        {{ form_start(f) }}
+        <table>
+
+
+            <tr>
+                <td><h3>Solde</h3> <br> <br><br><br></td><td>{{ form_widget(f.solde) }}<br> <br><br> <br></td>
+            </tr>
+
+
+
+             <td>    <input class="btn btn-primary btn-rounded" type="submit" value="Ajouter"></td>
+
+
+
+        </table>
+        {{ form_end(f) }}
+    </center>
+
+{% endblock %}
+
+
+
+
+

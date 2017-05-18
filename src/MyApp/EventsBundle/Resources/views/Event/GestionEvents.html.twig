@@ -1,0 +1,164 @@
+{% extends ":default:layoutUser.html.twig" %}
+{% block Menu %}
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('my_app_event_homepage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Seances</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutSeance') }}">Nouvelle Seance</a></li>
+                <li><a href="{{ path('lsitSeance') }}">Liste Des Seances</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+
+        <li class="droplink"><a href="{{ path('Affichage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('listeAff') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Affectation</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('affichtableau') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Voitures</p><span class="arrow"></span></a>
+
+        </li>
+
+
+
+
+
+    </ul>
+
+{% endblock %}
+{% block title %}
+    <div class="page-title">
+        <h3> Gestion des Evenement</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('my_app_event_homepage') }}">Home</a></li>
+
+
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+
+    <!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <title>Karhabty</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+
+    <div class="container" align="center">
+        {% if app.session.flashBag.has('notice') %}
+            <div class="alert alert-warning">
+                {% for msg in app.session.flashBag.get('notice') %}
+                    {{ msg }}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+        <h2>Nos Evenements</h2>
+        <div class="tab-pane active" id="tab_actions_pending">
+            <!-- BEGIN: Actions -->
+            {% for i in data %}
+            <div class="mt-actions">
+                <div class="mt-action">
+                    <div class="mt-action-details ">
+                        <h3 class="uppercase">
+                            <p>{{ i.title }}</p>
+                        </h3>
+                    </div>
+                    <div class="mt-action-img">
+                        <img class="media-object img-rounded" width="200px" height="200px"  src="{{ asset(vich_uploader_asset(i, 'imageFile')) }}" />
+                        <div class="mt-action-body">
+                            <p class="mt-action-desc">{{ i.description }} </p>
+                            <div class="mt-action-row">
+                                <div class="mt-action-info ">
+                                </div>
+                                <div class="mt-action-datetime ">
+                                    <div class="list-datetime bold uppercase font-red"> {% if i.eventDate %}{{ i.eventDate | date('d-m-y')}}{% endif %} </div>
+                                </div>
+                                <div class="mt-action-buttons ">
+                                    {% if app.user and app.user.id == i.user.id %}
+                                        <p>
+                                            <a href="{{ path('daeletEvent', {'id': i.id})}}" class="btn btn-danger">Supprimer</a>
+                                            <a href="{{ path('updateEvent',{'id': i.id}) }}" class="btn btn-default">Modifier</a>
+                                            <a href="{{ path('ListParticipants',{'id': i.id}) }}" class="btn btn-primary">Participant</a>
+                                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Inviter Des Amis</button>
+
+                                        <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        {{ socialButtons() }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </p>
+                                    {% else %}
+                                        <a href="{{ path('Participer', {'id': i.id}) }} " class="btn btn-info btn-rounded">Participer</a>
+                                        <button type="button" class="btn btn-facebook m-b-xs" data-toggle="modal" data-target="#myModal">Inviter Des Amis</button>
+
+                                        <div class="modal fade" id="myModal" role="dialog">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        {{ socialButtons() }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    {% endfor %}
+                    <!-- END: Actions -->
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(data) }}
+        </div>
+
+    </div>
+
+    </body>
+    </html>
+{% endblock %}

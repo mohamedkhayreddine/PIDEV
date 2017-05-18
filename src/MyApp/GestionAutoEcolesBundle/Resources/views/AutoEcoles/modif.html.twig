@@ -1,0 +1,66 @@
+{% extends "@MyAppUser/Default/pages/gerant.html.twig" %}
+{% block container %}
+
+    {{ form_start(f, {'attr': {'class': 'form-control'}}) }}
+
+    <center>
+
+
+
+        <table>
+
+            <tr>
+                <td>Nom :</td>
+                <td>{{ form_widget(f.nom, {'attr': {'class': 'form-control'}}) }}</td>
+
+
+
+            </tr>
+
+
+
+
+            <tr>
+
+                <td>Num Tel:</td>
+                <td>{{ form_widget(f.numTel, {'attr': {'class': 'form-control'}}) }}</td>
+
+            </tr>
+
+            <tr>
+
+                <td>  E-mail : </td>
+                <td>  {{ form_widget(f.eMail, {'attr': {'class': 'form-control'}}) }}</td>
+
+            </tr>
+
+            <tr>
+                <td>Matricule fiscal :</td>
+                <td> {{ form_widget(f.matriculeFiscal, {'attr': {'class': 'form-control'}}) }}</td>
+            </tr>
+
+
+
+            <tr>
+                <td>Adresse</td>
+                <td>
+                    {{ form_widget(f.idVille, {'attr': {'class': 'form-control'}}) }}
+                </td>
+            </tr>
+
+            <br><br>
+
+
+<tr>
+    <td></td>
+    <td>  <div class="g-recaptcha" data-sitekey="6LdFShsUAAAAADdAfN4uyCEbgIDdmmNfcsBSyRnK"></div></td></tr>
+
+
+            <tr> <td> <input class="btn btn-primary btn-rounded" type="submit" value="Ajouter"></td></tr>
+
+        </table>
+    </center>
+
+    {{ form_end(f) }}
+
+{% endblock %}

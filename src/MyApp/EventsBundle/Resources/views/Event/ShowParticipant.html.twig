@@ -1,0 +1,100 @@
+{% extends ":default:layoutUser.html.twig" %}
+{% block Menu %}
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('my_app_event_homepage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Seances</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutSeance') }}">Nouvelle Seance</a></li>
+                <li><a href="{{ path('lsitSeance') }}">Liste Des Seances</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('listeAff') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Affectation</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('affichtableau') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Voitures</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="{{ path('Affichage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>AutoEcoles</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('Ajout') }}">Nouvelle AutoEcole</a></li>
+
+            </ul>
+        </li>
+
+
+
+
+    </ul>
+
+{% endblock %}
+{% block container %}
+    <center><h3 style="color:#880000 ">La listes des participants </h3></center>
+    <table class="table">
+
+    <thead>
+    <tr>
+
+        <th>Noms Participants </th>
+        <th>Prenoms Participants </th>
+        <th>Evenement </th>
+
+
+    </tr>
+    </thead>
+
+    {% for i in participation %}
+
+
+
+
+
+            <tbody>
+            <tr>
+
+                <td> {{ i.user.nom }} </td>
+                <td>{{ i.user.prenom }}</td>
+                <td> {{ i.event.title }}</td>
+                {% if i.status == "request" %}
+                <td> <button type="button" class="btn btn-outline green btn-sm"><a  href="{{ path('AcceptParticipant',{'id': i.id}) }}">Accepter</a></button> </td>
+                <td><button type="button" class="btn btn-outline red btn-sm"><a href="{{ path('DeclineParticipant',{'id': i.id}) }}">Refuser</a></button></td>
+                    {% endif %}
+                {% if i.status == "accepted" %}
+                    <td><button type="button" class="btn btn-outline red btn-sm"><a href="{{ path('DeclineParticipant',{'id': i.id}) }}">Refuser</a></button></td>
+                    {% endif %}
+                 {% if i.status == "declined" %}
+                     <td> <button type="button" class="btn btn-outline green btn-sm"><a  href="{{ path('AcceptParticipant',{'id': i.id}) }}">Accepter</a></button> </td>
+                     {% endif %}
+            </tr>
+
+
+
+            </tbody>
+
+    {% endfor %}
+        </table>
+
+
+{% endblock %}

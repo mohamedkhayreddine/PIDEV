@@ -1,0 +1,50 @@
+{% extends ":default:layoutAdmin.html.twig" %}
+{% block container %}
+
+    <center>   <h2 style="color: #FFFFFF"><b>Liste des reclamations </b></h2></center>
+
+
+    {%  for i in f %}
+        <tr>
+
+
+            <td>{{ i.matricule }}</td>
+
+            <td>{{ i.titrerec}}</td>
+
+            <td>{{ i.dateReclamation |date }}</td>
+
+
+            <td class="text-info">{{ i.statut }} </td>
+
+            <td>{{ i.idoffre.getTitre() }}</td>
+            <td>{{ i.idcandidat}}
+                {% if(i.statut == "en cours" )%}
+
+
+            <td><a href="{{ path('traiter reclamation',{'matricule':i.matricule}) }}"class="btn btn-success btn-rounded">Traiter</a> </td>
+
+
+            <td><a href="{{ path('refuser reclamation',{'matricule':i.matricule}) }}"class="btn btn-danger btn-rounded">Refuser</a> </td>
+
+
+            {% endif %}
+            {% if(i.statut == "Refuser" )%}
+
+
+                <td><a href="{{ path('traiter reclamation',{'matricule':i.matricule}) }}"class="btn btn-success btn-rounded">Traiter</a> </td>
+
+
+            {% endif %}
+            {% if(i.statut == "Traiter" )%}
+
+
+                <td><a href="{{ path('refuser reclamation',{'matricule':i.matricule}) }}"class="btn btn-danger btn-rounded">Refuser</a> </td>
+
+            {% endif %}
+
+
+        </tr>
+    {% endfor %}
+
+{% endblock %}

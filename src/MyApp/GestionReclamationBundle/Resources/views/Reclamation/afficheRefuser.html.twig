@@ -1,0 +1,27 @@
+{% extends "@MyAppUser/Default/pages/admin.html.twig" %}
+{% block container %}
+
+    <center>   <h2 style="color: #FFFFFF"><b>Liste des reclamations refusé </b></h2></center>
+
+
+    {%  for i in f %}
+        <tr>
+            <td>{{ i.matricule }}</td>
+
+            <td>{{ i.titrerec}}</td>
+
+            <td>{{ i.dateReclamation |date }}</td>
+
+
+            <td class="text-info">{{ i.statut }} </td>
+
+            <td>{{ i.idoffre.getTitre() }}</td>
+            <td>{{ i.idcandidat}}
+            <td><a href="{{ path('traiter reclamation',{'matricule':i.matricule}) }}"class="btn btn-success btn-rounded">Traiter</a> </td>
+
+
+
+        </tr>
+    {% endfor %}
+
+{% endblock %}

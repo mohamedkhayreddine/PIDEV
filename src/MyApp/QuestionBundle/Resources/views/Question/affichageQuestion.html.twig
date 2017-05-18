@@ -1,0 +1,99 @@
+{% extends "@MyAppUser/Default/pages/admin.html.twig" %}
+
+{% block container %}
+    <style>
+        table {
+            width:100%;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            align-self: center;
+            align-content: center;
+            align-items: center;
+            vertical-align: middle;
+
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #222222;
+        }
+        table#t01 tr:nth-child(odd) {
+            background-color: #393939;
+        }
+        table#t01 th {
+            background-color: black;
+            color: white;
+        }
+    </style>
+
+
+
+    <br>
+    <br>
+    <a href="{{ path('genererSon') }}"><button  class="btn btn-success m-b-sm">Générer Son</button></a>
+
+
+
+
+
+
+    <div class="table-responsive">
+        {{ form_start(r) }}
+        {{ form_widget(r.contenu) }}
+        {{ form_end(r) }}
+        <table><tr><td align="center">
+
+    <table class="table table-bordered" id="t01">
+        <caption align="center"><center><h1>Question</h1></center></caption>
+
+        <thead>
+        <tr>
+
+            <th width="300px">Contenu</th>
+            <th >Type Question</th>
+            <th>Reponse Correct </th>
+            <th colspan="3">reponser erronée</th>
+            <th>Image</th>
+            <th>modifier</th>
+            <th>Supprimer</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for c in l %}
+
+                <tr>
+                <td align="center">{{ c.contenu }}</td>
+                <td align="center">{{ c.typequest.typequest }}</td>
+                <td align="center">{{ c.reponsecorrect }}</td>
+                <td align="center">{{ c.choix1 }}</td>
+                <td align="center">{{ c.choix2 }}</td>
+                <td align="center">{{ c.choix3 }}</td>
+                <td><img src="{{app.request.basepath}}/images/Questionimages/{{  c.imageName }}" width="150px" height="150px" alt="monimg" /></td>
+                <td><a><img src="{{ asset('images/icons/edit_256.png') }}" width="20px" height="20px"></a></td>
+                <td><a href="{{ path('supprimercour', { 'id':c.id }) }}" onclick="return confirm('Voulez vous vraiment supprimer cet élément?')" >
+                        <img src="{{ asset('images/icons/delete_128.png') }}" width="20px" height="20px"></a></td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+          </td>
+            </tr>
+        </table>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+{% endblock %}

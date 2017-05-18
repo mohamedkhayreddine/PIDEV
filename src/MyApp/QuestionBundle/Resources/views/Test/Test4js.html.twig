@@ -1,0 +1,166 @@
+
+<script type="text/javascript" src="{{ asset('turnjs4/jquery-3.js') }}"></script>
+
+<script type="text/javascript" src="{{ asset('turnjs4/turn.min.js') }}"></script>
+
+
+<script src="{{ asset('plugins/jquery-blockui/jquery.blockui.js') }}"></script>
+<script src="{{ asset('plugins/pace-master/pace.min.js') }}"></script>
+<script src="{{ asset('plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('plugins/switchery/switchery.min.js') }}"></script>
+<script src="{{ asset('plugins/offcanvasmenueffects/js/classie.js') }}"></script>
+<script src="{{ asset('plugins/offcanvasmenueffects/js/main.js') }}"></script>
+<script src="{{ asset('plugins/waves/waves.min.js') }}"></script>
+<script src="{{ asset('plugins/3d-bold-navigation/js/main.js') }}"></script>
+<script src="{{ asset('plugins/uniform/jquery.uniform.min.js') }}"></script>
+<script src="{{ asset('plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+
+{#     #}
+
+<style type="text/css">
+    body{
+        background:#ccc;
+    }
+    #magazine{
+        width:576px;
+        height:752px;
+    }
+    #magazine .turn-page{
+        background-color:#1ba0e1;
+        background-size:100% 100%;
+    }
+    input{
+        position: relative;
+    }
+
+</style>
+</head>
+<body>
+
+
+
+<div id="magazine">
+
+    {% for i in l %}
+        <div>
+            {{ loop.index }}
+            {{ i.contenu }}<br>
+            {% if i.id is divisible by(3) %}
+                <input type="radio"   name="answer{{ loop.index }}" value="{{ i.choix1 }}" checked>{{ i.choix1 }}
+                <input type="radio" name="answer{{ loop.index }}" value=" {{ i.choix2 }}" >{{ i.choix2 }}<br>
+                <input type="radio" name="answer{{ loop.index }}" value="{{ i.choix3 }}" >{{ i.choix3 }}
+                <input type="radio" class="rep" id="ch{{ loop.index }}" name="answer{{ loop.index }}" value="{{ i.reponsecorrect }}">{{ i.reponsecorrect }} correctimher <br>
+            {% elseif i.id is divisible by(2) %}
+                <input type="radio"  name="answer{{ loop.index }}"  value="{{ i.choix1 }}" checked>{{ i.choix1 }}
+                <input type="radio"  class="rep" id="ch{{ loop.index }}" name="answer{{ loop.index }}"  value="{{ i.reponsecorrect }}" >{{ i.reponsecorrect }} correctimthere<br>
+                <input type="radio"  name="answer{{ loop.index }}"  value="{{ i.choix3 }}" >{{ i.choix3 }}
+                <input type="radio"  name="answer{{ loop.index }}"  value=" {{ i.choix2 }}" >{{ i.choix2 }}<br>
+            {% elseif i.id is divisible by(5) %}
+                <input type="radio" class="rep" id="ch{{ loop.index }}" name="answer{{ loop.index }}" value="{{ i.reponsecorrect }}" checked>{{ i.reponsecorrect }} correct
+                <input type="radio"  name="answer{{ loop.index }}" value="{{ i.choix1 }}" >{{ i.choix1 }}<br>
+                <input type="radio"  name="answer{{ loop.index }}" value="{{ i.choix3 }}" >{{ i.choix3 }}
+                <input type="radio"  name="answer{{ loop.index }}" value=" {{ i.choix2 }}" >{{ i.choix2 }}<br>
+            {% else %}
+                <input type="radio"  name="answer{{ loop.index }}" value="{{ i.choix1 }}" checked>{{ i.choix1 }}
+                <input type="radio"  name="answer{{ loop.index }}" value="{{ i.choix3 }}" >{{ i.choix3 }}<br>
+                <input type="radio"  class="rep" id="ch{{ loop.index }}" name="answer{{ loop.index }}" value="{{ i.reponsecorrect }}" >{{ i.reponsecorrect }} correct
+                <input type="radio"  name="answer{{ loop.index }}" value=" {{ i.choix2 }}" >{{ i.choix2 }}<br>
+            {% endif %}
+        </div>
+        <br>
+    {% endfor %}
+    <div>test</div>
+</div>
+<button type="button" ></button>
+<button onclick="getHU()"></button>
+
+<script type="text/javascript">
+
+    $(window).ready(function() {
+        $('#magazine').turn({
+            display: 'double',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation:50,
+            when: {
+                turned: function(e, page) {
+                    /*console.log('Current view: ', $(this).turn('view'));*/
+                }
+            }
+        });
+    });
+
+
+    $(window).bind('keydown', function(e){
+
+        if (e.keyCode==39)
+            $('#magazine').turn('next');
+        console.warn("page turned");
+    });
+
+</script>
+<script>
+
+
+    $("button").click(function(){   var countChecked = function() {
+        var n = $( ".rep:checked" ).length;
+        console.warn("jquery za3ma"+n);
+    };
+        countChecked();
+
+        $( "input[type=radio]" ).on( "click", countChecked );
+
+    });
+    console.warn("nbrcorrect"+ t);
+
+</script>
+
+<script>
+    function test() {
+
+
+        var t = 0;
+        $('.rep').each(function () {
+            if (this.isChecked()) {
+                t++;
+            }
+        });
+        console.warn(t);
+
+    }
+</script>
+<script>
+    function getHU()
+    {
+        var t=0;
+        var i;
+        var noni= [] ;
+
+        noni = document.getElementsByClassName("rep");
+        console.warn('size liste ' + noni.length);
+        for (i=0;i< noni.length;i++){
+            if(noni[i].checked){
+                t++;
+            }
+        }
+        console.warn(t);
+        alert(t);
+    }
+
+</script>
+<br>
+<br>
+<br>
+<button onclick="tic()"></button>
+<script>
+ function tic() {
+
+
+     $("#magazine").turn({page: 1, acceleration: true, gradients: true});
+    console.log("va33333333333333")
+ }
+</script>
+
+
+</body>

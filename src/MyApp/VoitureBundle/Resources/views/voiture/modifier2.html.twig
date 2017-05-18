@@ -1,0 +1,30 @@
+
+{{ form_start(form, {'action': path('modifierVoiture', {'serie' : serie}), 'method': 'POST'}) }}
+
+                                            <div class="form-group">
+
+                                                {{ form_widget(form.serie) }}
+                                            </div>
+
+                                            <div class="form-group">
+                                                {{ form_widget(form.marque) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_widget(form.dateEntretient) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_widget(form.couleur) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_widget(form.model) }}
+                                            </div>
+                                            <div class="form-group">
+                                                {{ form_widget(form.imageFile) }}
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button"  class="btn btn-default" data-dismiss="modal"> Annuler</button>
+                                                <button type="submit" id="add-row" name="form[save]" class="btn btn-success">Modifier</button>
+                                                {{ form_end(form) }}
+
+                                            </div>

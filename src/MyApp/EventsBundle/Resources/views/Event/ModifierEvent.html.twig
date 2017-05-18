@@ -1,0 +1,134 @@
+{% extends ":default:layoutUser.html.twig" %}
+{% block Menu %}
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('my_app_event_homepage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Seances</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutSeance') }}">Nouvelle Seance</a></li>
+                <li><a href="{{ path('lsitSeance') }}">Liste Des Seances</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('listeAff') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Affectation</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('affichtableau') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Voitures</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="{{ path('Affichage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>AutoEcoles</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('Ajout') }}">Nouvelle AutoEcole</a></li>
+
+            </ul>
+        </li>
+
+
+
+
+    </ul>
+
+{% endblock %}
+{% block container %}
+
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    <div align="center">
+        <p>All Fields Are Required</p>
+
+        <div class="form-row">
+
+            {{ form_label(form.title, "Titre") }}
+            {{ form_widget(form.title) }}
+            <span class="required" aria-required="true"> * </span>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="form-errors-row">
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="form-row">
+
+            {{ form_label(form.description, "Desc") }}
+            {{ form_widget(form.description) }}
+            <span class="required" aria-required="true"> * </span>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="form-errors-row">
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="form-row">
+
+            {{ form_label(form.address, "Adress") }}
+            {{ form_widget(form.address) }}
+            <span class="required" aria-required="true"> * </span>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="form-errors-row">
+            {{ form_errors(form.address) }}
+        </div>
+
+        <div class="form-row">
+
+            {{ form_label(form.eventDate, "Date") }}
+            {{ form_widget(form.eventDate) }}
+            <span class="required" aria-required="true"> * </span>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="form-errors-row">
+            {{ form_errors(form.eventDate) }}
+        </div>
+
+        <div class="form-row">
+
+            {{ form_label(form.access, "Access") }}
+            {{ form_widget(form.access) }}
+            <span class="required" aria-required="true"> * </span>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="form-errors-row">
+            {{ form_errors(form.access) }}
+        </div>
+        <div class="form-row">
+
+            {{ form_label(form.imageFile, "Photo") }}
+            {{ form_widget(form.imageFile) }}
+            <span class="required" aria-required="true"> * </span>
+            <div class="clear-fix"></div>
+        </div>
+        <div class="form-errors-row">
+            {{ form_errors(form.imageFile) }}
+        </div>
+        <div>
+            {{ form_widget(form.save) }}
+        </div>
+
+
+    </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends '@MyAppUser/Default/pages/user.html.twig' %}
+
+
+{% block links %}
+    <div class="page-title">
+        <h3> Planning </h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="{{ path('MesSeances') }}">Mon Emploi</a></li>
+
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+
+    <html>
+    <head>
+        <style>
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            th, td {
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even){background-color: #ffffff}
+
+            th {
+                background-color: #5d5d5d;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="panel-body">
+
+
+        <br>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Date Seance </th>
+                <th> Heure Debut</th>
+                <th> Heure Fin</th>
+                <th>Moniteur</th>
+                <th>Candidat</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in data %}
+                <tr>
+                    <td> {{ i.dateSeance|date('d-m-y') }}</td>
+                    <td> {{ i.heureDebut|date('h:m') }}</td>
+                    <td> {{ i.heureFin|date('h:m') }}</td>
+                    <td> {{ i.idMoniteur }}</td>
+                    <td> {{ i.idCandidat }} </td>
+
+
+
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <div>
+            <a href="{{ path('PDF',{'id' : app.user.getId() }) }}">
+                <p style="color: #880000">Telecharger PDF </p>
+            </a>
+        </div>
+    </div>
+
+
+
+    </body>
+
+    </html>
+
+
+
+{% endblock %}

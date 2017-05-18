@@ -1,0 +1,20 @@
+
+listerPublicite:
+    path:     /listerPublicite
+    defaults: { _controller: MyAppPubliciteBundle:Default:listerPublicites }
+
+modifierPublicite:
+    path:     /modifierPublicite/{id}
+    defaults: { _controller: MyAppPubliciteBundle:Default:modiferPublicite}
+
+supprimerPublicite:
+    path:     /supprimerPublicite/{id}
+    defaults: { _controller: MyAppPubliciteBundle:Default:supprimerPublicite}
+
+listerPubliciteAdmin:
+    path:     /listerPubliciteAdmin
+    defaults: { _controller: MyAppPubliciteBundle:PubliciteAdmin:listerPublicites }
+
+validerPublicite:
+    path:     /validerPublicite/{id}
+    defaults: { _controller: MyAppPubliciteBundle:PubliciteAdmin:validerPublicite}

@@ -1,0 +1,29 @@
+my_map_homepage:
+    path:     /map
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:Default:index }
+Affichage:
+    path:     /affichage
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:AutoEcoles:affichage }
+
+Ajout:
+    path:     /ajouter
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:AutoEcoles:ajout}
+Supprimer:
+    path:     /delete/{id}
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:AutoEcoles:supprimer}
+Modifier:
+    path:     /modifier/{nom}
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:AutoEcoles:modifier}
+tuto_autocomplete:
+    path:     /autocomplete
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:AutoEcoles:index }
+
+ajax_autocomplete_countries:
+  path:  /ajax/autocomplete/update/data
+  defaults: { _controller: MyAppGestionAutoEcolesBundle:AjaxAutocomplete:updateData }
+villesaaa:
+    path: /exp/{nom}
+    defaults: { _controller:  MyAppGestionAutoEcolesBundle:Offres:rechercheExperience }
+modifmobile:
+    path:     /mo/{nom}/{numTel}/{email}
+    defaults: { _controller: MyAppGestionAutoEcolesBundle:Mobile:modifierrecMobile }

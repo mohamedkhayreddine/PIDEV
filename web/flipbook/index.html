@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<title>jQuery Flipbook Image Scroller</title>
+
+<link rel="stylesheet" type="text/css" href="icons/ss-standard.css" />
+<link rel="stylesheet" type="text/css" href="pictureflip.css" />
+
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=yes">
+
+<script type="text/javascript" src="//use.typekit.net/vue1oix.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<script src="modernizr.js"></script>
+<script src="jquery.js"></script>
+<script src="jquery.pictureflip.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$('#flipbook').pageFlip({});
+
+});
+</script>
+</head>
+<body>
+
+<div id="flipbook">
+	<div class="slide">
+		<img src="images/1.jpg" alt="" /> 
+		<div class="content"><a href="#">Flowers: What you didn't know</a></div> 
+	</div>
+	<div class="slide">
+		<img src="images/2.jpg" alt="" /> 
+		<div class="content"><a href="#">Flowers: Real or Fiction?</a></div> 
+	</div>
+	<div class="slide">
+		<img src="images/3.jpg" alt="" /> 
+		<div class="content"><a href="#">A Flower ate my Baby!</a></div> 
+	</div>
+	<div class="slide">
+		<img src="images/4.jpg" alt="" /> 
+		<div class="content"><a href="#">Will Flowers Destroy Earth?</a></div>
+	</div>
+</div>
+
+</body>
+</html>

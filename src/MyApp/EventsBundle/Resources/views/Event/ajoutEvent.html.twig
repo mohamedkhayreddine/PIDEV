@@ -1,0 +1,166 @@
+{% extends ":default:layoutUser.html.twig" %}
+{% block Menu %}
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('my_app_event_homepage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Seances</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutSeance') }}">Nouvelle Seance</a></li>
+                <li><a href="{{ path('lsitSeance') }}">Liste Des Seances</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+
+        <li class="droplink"><a href="{{ path('Affichage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('Ajout') }}">Nouvelle AutoEcole</a></li>
+
+            </ul>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('listeAff') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Affectation</p><span class="arrow"></span></a>
+
+        </li>
+        </li>
+        <li class="droplink"><a href="{{ path('affichtableau') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Voitures</p><span class="arrow"></span></a>
+
+        </li>
+
+
+
+
+
+    </ul>
+
+{% endblock %}
+{% block title %}
+    <div class="page-title">
+        <h3> Gestion Des Evenements</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="{{ path('my_app_event_homepage') }}">Home</a></li>
+                <li><a href="{{ path('ajoutEvent') }}">Ajouter Un Evenement</a></li>
+
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+{% block container %}
+
+    {% if app.session.flashBag.has('notice') %}
+        <div class="alert alert-warning">
+            {% for msg in app.session.flashBag.get('notice') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+<div align="center">
+    <h3 style="color: red">Ajouter Un evenement </h3>
+    <div class="form-row">
+
+        {{ form_label(form.title, "Titre : ") }}
+        {{ form_widget(form.title,{'attr':{'class':'form-control input-rounded'}}) }}
+
+        <div class="clear-fix"></div>
+    </div>
+    <div class="form-errors-row">
+        {{ form_errors(form.title) }}
+    </div>
+
+    <br>
+
+
+    <div class="form-row">
+
+        {{ form_label(form.description, "Description : ") }}
+        {{ form_widget(form.description,{'attr':{'class':'form-control input-lg m-b-sm' , 'data-live-search':"true"}}) }}
+
+        <div class="clear-fix"></div>
+    </div>
+
+    <br>
+
+
+    <div class="form-row">
+
+        {{ form_label(form.address, "Adresse : ") }}
+        {{ form_widget(form.address,{'attr':{'class':'form-control input-lg m-b-sm' , 'data-live-search':"true"}}) }}
+
+        <div class="clear-fix"></div>
+    </div>
+    <div class="form-errors-row">
+        {{ form_errors(form.address) }}
+    </div>
+
+    <br>
+
+    <div class="form-row">
+
+        {{ form_label(form.eventDate, "Date : ") }}
+        {{ form_widget(form.eventDate,{'attr':{'class':'form-control input-lg m-b-sm' , 'data-live-search':"true"}}) }}
+
+        <div class="clear-fix"></div>
+    </div>
+    <div class="form-errors-row">
+        {{ form_errors(form.eventDate) }}
+    </div>
+    <br>
+    <div class="form-row">
+
+        {{ form_label(form.access, "Access : ") }}
+        {{ form_widget(form.access,{'attr':{'class':'form-control input-lg m-b-sm' , 'data-live-search':"true"}}) }}
+
+        <div class="clear-fix"></div>
+    </div>
+    <div class="form-errors-row">
+        {{ form_errors(form.access) }}
+    </div>
+    <br>
+    <div class="form-row">
+
+        {{ form_label(form.imageFile, "Affiche  : ") }}
+        {{ form_widget(form.imageFile,{'attr':{'class':'form-control input-lg m-b-sm' , 'data-live-search':"true"}}) }}
+
+        <div class="clear-fix"></div>
+    </div>
+    <div class="form-errors-row">
+        {{ form_errors(form.imageFile) }}
+    </div>
+    <div>
+        {{ form_widget(form.save,{'attr':{'class':'btn btn-success btn-rounded' , 'data-live-search':"true"}}) }}
+    </div>
+
+   <br>
+</div>
+
+    {{ form_end(form) }}
+
+{% endblock %}
+

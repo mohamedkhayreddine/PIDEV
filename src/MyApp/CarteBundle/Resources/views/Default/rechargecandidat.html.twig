@@ -1,0 +1,22 @@
+{% extends "@MyAppUser/Default/pages/user.html.twig" %}
+{% block container %}
+<center>
+    <h2 style="color: red" ><b>Recharger votre compte</b> </h2>
+    <br> <br>
+    {#{ form_start(f) }}#}
+    <form action="{{ path('recharge carte') }}" method="post">
+    <table>
+
+        <tr>
+            <input type="text" name="numRecharge" placeholder="N° carte" >
+
+        </tr>
+
+
+
+
+    </table>
+    </form>
+{#{{ form_end(f) }}#}
+</center>
+{% endblock %}

@@ -1,0 +1,19 @@
+my_app_affectation_homepage:
+    path:     /
+    defaults: { _controller: MyAppAffectationBundle:Default:index }
+listeAff:
+    path:     /listeAff
+    defaults: { _controller: MyAppAffectationBundle:affectation:afficher }
+
+listerAffectation:
+    path:     /listerAffectation
+    defaults: { _controller: MyAppAffectationBundle:affectation:afficher }
+ajouterAff:
+    path:     /ajouterAff/{id}
+    defaults: { _controller: MyAppAffectationBundle:affectation:ajouterAff}
+modifierAffectation:
+    path:     /modifierAffectation/{id}
+    defaults: { _controller: MyAppAffectationBundle:affectation:modifierAff}
+supprimerAffectation:
+    path:     /supprimerAffectation/{id}
+    defaults: { _controller: MyAppAffectationBundle:affectation:supprimerAffectation}

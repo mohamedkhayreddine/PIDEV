@@ -1,0 +1,19 @@
+my_app_voiture_homepage:
+    path:     /
+    defaults: { _controller: MyAppVoitureBundle:Default:index }
+affichtableau:
+    path:     /affichtableau
+    defaults: { _controller: MyAppVoitureBundle:voiture:affichetableu }
+supprimerVoiture:
+    path:     /supprimerVoiture/{serie}
+    defaults: { _controller: MyAppVoitureBundle:voiture:supprimerVoiture}
+gallery:
+    path:     /gallery
+    defaults: { _controller: MyAppVoitureBundle:voiture:afficher }
+modifierVoiture:
+    path:     /modifierVoiture/{serie}
+    defaults: { _controller: MyAppVoitureBundle:voiture:modiferVoiture}
+affVoiturep:
+    path:     /affVoiturep
+    defaults: { _controller: MyAppVoitureBundle:voiture:afficheAert}
+

@@ -1,0 +1,87 @@
+{% extends ":default:layoutUser.html.twig" %}
+{% block Menu %}
+
+    <ul class="menu accordion-menu">
+
+        <li><a href="" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-home"></span><p>Dashboard</p></a></li>
+        <li><a href="{{ path('fos_user_profile_show') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-user"></span><p>Profile</p></a></li>
+        <li class="droplink"><a href="{{ path('my_app_event_homepage') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-random"></span><p>Evenement</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+
+                <li><a href="{{ path('ajoutEvent') }}">Nouvel Evenement</a></li>
+            </ul>
+        </li>
+
+        <li class="droplink"><a href="{{ path('MesSeances') }}" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-calendar"></span><p>Emploi</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-gift"></span><p>Offres</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-comment"></span><p>Reclamation</p><span class="arrow"></span></a>
+            <ul class="sub-menu">
+                <li><a href="{{ path('affiche Reclamation') }}">Mes Reclamation</a></li>
+                <li><a href="{{ path('ajouter Reclamation') }}">Ajouter une reclamation</a></li>
+                <li><a href="{{ path('my_app_mail_homepage') }}" >Mail</a></li>
+            </ul>
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-road"></span><p>Auto Ecole</p><span class="arrow"></span></a>
+
+        </li>
+        <li class="droplink"><a href="#" class="waves-effect waves-button"><span class="menu-icon glyphicon glyphicon-list-alt"></span><p>Cours</p><span class="arrow"></span></a>
+
+        </li>
+        <li  class="droplink"><a href="#" class="waves-effect waves-button" ><span class="menu-icon glyphicon glyphicon-euro"></span><p>Recharge</p><span class="arrow"></span></a>
+
+        </li>
+
+
+
+    </ul>
+
+
+{% endblock %}
+{% block links %}
+    <div class="page-title">
+        <h3> Mes Reclamations</h3>
+        <div class="page-breadcrumb">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a></li>
+                <li><a href="{{ path('affiche Reclamation') }}">Reclamation</a></li>
+                <li><a href="{{ path('ajouter Reclamation') }}">Ajouter Une Reclamation</a></li>
+
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+<center>
+    <h2 style="color: red"><b>Ajouter une reclamation </b></h2></center>
+    <br><br>
+{{ form_start(f) }}
+
+<table align="center">
+
+
+    <tr>
+        <td> Titre de la reclamation <br> <br><br></td><td>{{ form_widget(f.titrerec) }} <br> <br> <br> </td>
+    </tr>
+
+    <tr>
+        <td>Offre <br> <br><br></td><td>{{ form_widget(f.idoffre) }}<br> <br> <br> </td>
+    </tr>
+
+    <tr>
+        <td>Motif<br> <br> <br></td><td>{{ form_widget(f.motif) }}<br> <br> <br> </td>
+    </tr>
+
+
+    <tr>
+        <td> <input class="btn btn-primary btn-rounded" type="submit" value="Ajouter"></td>
+    </tr>
+
+
+</table>
+{{ form_end(f) }}
+{% endblock %}

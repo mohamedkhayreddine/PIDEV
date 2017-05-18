@@ -1,0 +1,45 @@
+{% extends ":default:layoutAdmin.html.twig" %}
+{% block container %}
+    <center>
+
+        <center>   <h2 style="color: #FFFFFF"><b>La liste des cartes </b></h2></center>
+
+
+    {% for i in f %}
+        <tr>
+            <td>{{ i.numRecharge }}</td>
+            <td>{{ i.solde }}</td>
+            <td>{{ i.datecarte|date }}</td>
+            <td><a href="{{ path('modifier carte',{'numRecharge':i.numRecharge}) }}"class="btn btn-primary btn-rounded">Modifier</a></td>
+            <td><button type="button" class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#myModal">Supprimer</button>
+
+                <!-- Modal -->
+                <div id="myModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Suppression Carte</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>vous etes sur de vouloir supprimer.</p>
+                            </div>
+                            <div class="modal-footer">
+
+                                <a href="{{ path('supprimer carte',{'numRecharge':i.numRecharge}) }}"class="btn btn-danger btn-rounded">Supprimer</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div></td>
+
+            <!-- Trigger the modal with a button -->
+
+
+        </tr>
+    {% endfor %}
+
+    </center>
+{% endblock %}

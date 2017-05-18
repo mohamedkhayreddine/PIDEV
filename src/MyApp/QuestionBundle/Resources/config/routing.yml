@@ -1,0 +1,88 @@
+my_app_question_homepage:
+    path:     /test
+    defaults: { _controller: MyAppQuestionBundle:Question:ajouter }
+affichageQuestion:
+    path:     /affichageQuestion
+    defaults: { _controller: MyAppQuestionBundle:Question:afficher }
+affi:
+    path:     /affi
+    defaults: { _controller: MyAppQuestionBundle:Question:zaafficher2 }
+supprimercour:
+    path:     /supprimerQuestion/{id}
+    defaults: { _controller: MyAppQuestionBundle:Question:supprimer }
+rechercherQuestion:
+    path:     /rechercherQuestion/{contenu}
+    defaults: { _controller: MyAppQuestionBundle:Question:recherche }
+tester:
+    path:     /fairetest/{type}
+    defaults: { _controller: MyAppQuestionBundle:Test:faireTest }
+generertester:
+    path:     /generertest
+    defaults: { _controller: MyAppQuestionBundle:Test:genererTest }
+flip:
+    path:     /flip
+    defaults: { _controller: MyAppQuestionBundle:Default:index }
+afficherResTest:
+    path:     /AfficherResultat2/{res}
+    defaults: { _controller: MyAppQuestionBundle:Test:afficherResultat }
+genererExamin:
+    path:     /genererexamin
+    defaults: { _controller: MyAppQuestionBundle:Examin:genererExam }
+revenir:
+    path:     /patienter
+    defaults: { _controller: MyAppQuestionBundle:Examin:Patienter }
+suivreAvancement:
+    path:     /suivi
+    defaults: { _controller: MyAppQuestionBundle:Avancement:recuperer }
+genererSon:
+    path:     /genererSon
+    defaults: { _controller: MyAppQuestionBundle:Question:sound }
+ajaxtest:
+    path:     /ajax
+    defaults: { _controller: MyAppQuestionBundle:Question:zaafficher3 }
+affichage:
+    path:     /ajax/aff
+    defaults: { _controller: MyAppQuestionBundle:Question:zaafficher4 }
+    requirements:
+        format: json
+effacer:
+    path:     /ajax/{id}
+    defaults: { _controller: MyAppQuestionBundle:Question:supprimer }
+    requirements:
+        format: json
+rechercher:
+    path:     /ajax/recherche/{val}
+    defaults: { _controller: MyAppQuestionBundle:Question:rechercher }
+    requirements:
+        format: json
+TEST:
+    path:     /template
+    defaults: { _controller: MyAppQuestionBundle:Question:tester }
+afficherResultatExam:
+    path:     /resultatExam/{a}/{b}/{c}/
+    defaults: { _controller: MyAppQuestionBundle:Examin:afficherResultat }
+afficherResultatExam2:
+    path:     /resultatExam2/{a}/{b}/{c}/
+    defaults: { _controller: MyAppQuestionBundle:Examin:afficherResultat }
+    requirements:
+        format: json
+genererSonn:
+    path:     ajax/parole
+    defaults: { _controller: MyAppQuestionBundle:Question:soundJson }
+    requirements:
+        format: json
+Examformobile:
+    path:     /MobileExam/
+    defaults: { _controller: MyAppQuestionBundle:Examin:genererExamMobile }
+    requirements:
+        format: json
+Enregistrmentmobile:
+    path:     /ajax/{a}/{b}/{c}/{id}
+    defaults: { _controller: MyAppQuestionBundle:Examin:SauvegardeMobile }
+    requirements:
+        format: json
+Sauvegarde:
+    path:      /ajax2/{a}/{b}/{c}/{id}/
+    defaults: { _controller: MyAppQuestionBundle:Examin:sauvegarde }
+
+

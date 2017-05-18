@@ -1,0 +1,22 @@
+
+gestion_offres_homepage:
+    path:     /
+    defaults: { _controller: MyAppGestionOffresBundle:Default:index }
+Afficher_offres:
+    path:     /afficheoffres
+    defaults: { _controller: MyAppGestionOffresBundle:Offres:affichage }
+Ajout_offres:
+    path:     /ajoutoffres
+    defaults: { _controller: MyAppGestionOffresBundle:Offres:ajout }
+Modifier_Offres:
+    path:     /modifieroffres/{id}
+    defaults: { _controller: MyAppGestionOffresBundle:Offres:modifier}
+Supprimer_Offres:
+    path:     /supprimeroffres/{id}
+    defaults: { _controller: MyAppGestionOffresBundle:Offres:supprimer}
+rechall:
+    path: /reclamationAll
+    defaults: { _controller:  MyAppGestionOffresBundle:Offres:listReclamationCandidat}
+villesaaa:
+    path: /exp/{nom}
+    defaults: { _controller:  MyAppGestionOffresBundle:Offres:rechercheExperience }

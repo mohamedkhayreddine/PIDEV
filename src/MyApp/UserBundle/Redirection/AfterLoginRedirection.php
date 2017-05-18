@@ -52,13 +52,16 @@ class AfterLoginRedirection implements AuthenticationSuccessHandlerInterface
         }, $roles);
 // If is a admin or super admin we redirect to the backoffice area
         if (in_array('ROLE_CLIENT', $rolesTab, true) )
-            $redirection = new RedirectResponse($this->router->generate('espaceclient'));
+            $redirection = new RedirectResponse($this->router->generate('my_app_candidat_page'));
 // otherwise, if is a commercial user we redirect to the crm area
         elseif (in_array('ROLE_GERANT', $rolesTab, true))
-            $redirection = new RedirectResponse($this->router->generate('espacgerant'));
+            $redirection = new RedirectResponse($this->router->generate('my_app_gerant_page'));
+
+        elseif (in_array('ROLE_ADMIN', $rolesTab, true))
+            $redirection = new RedirectResponse($this->router->generate('my_app_admin_page'));
 // otherwise we redirect user to the member area
         else
-            $redirection = new RedirectResponse($this->router->generate('my_app_gestion_seance_homepage'));
+            $redirection = new RedirectResponse($this->router->generate('my_app_moniteur_page'));
 
         return $redirection;
     }
